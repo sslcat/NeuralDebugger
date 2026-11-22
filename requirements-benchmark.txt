@@ -1,2 +1,2 @@
 -r requirements.txt
-wasmtime==39.0.0
+-r requirements-checks.txt

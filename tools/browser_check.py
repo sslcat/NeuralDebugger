@@ -33,6 +33,8 @@ def main():
             expect(page.locator("#result")).to_be_visible(timeout=165000)
             expect(page.locator("#fixed")).to_contain_text("clock_parts")
             expect(page.locator("#status")).to_contain_text(badge+" active")
+            if args.expect in ("adapter", "hybrid-conditioned"):
+                expect(page.locator("#device")).to_contain_text("Experimental")
             if args.expect.startswith("hybrid-"):
                 expect(page.locator("#repair-route")).to_be_visible()
                 required = "supplied to base repair" if args.expect.endswith("conditioned") else "independent base repair"
@@ -47,6 +49,23 @@ def main():
             if args.shot_dir:
                 args.shot_dir.mkdir(parents=True, exist_ok=True)
                 page.screenshot(path=args.shot_dir / f"{label}.png", full_page=True)
+        if args.analyze:
+            page.context.grant_permissions(["clipboard-read", "clipboard-write"], origin=args.url)
+            page.locator("#copy").click()
+            expect(page.locator("#copy")).to_have_text("Copied")
+            # Windows clipboard text may carry CRLF even when the DOM uses LF.
+            copied = page.evaluate("navigator.clipboard.readText()")
+            expected = page.locator("#fixed").text_content()
+            assert copied.replace("\r\n", "\n") == expected.replace("\r\n", "\n")
+        # Exercise the error UI separately after the real inference and screenshots.
+        page.route("**/api/analyze", lambda route: route.fulfill(
+            status=503, content_type="application/json",
+            body='{"detail":"Diagnostic worker unavailable (browser test)."}'))
+        page.click("#analyze")
+        expect(page.locator("#message")).to_contain_text("Analysis interrupted")
+        expect(page.locator("#message")).to_contain_text("Diagnostic worker unavailable")
+        expect(page.locator("#result")).to_be_hidden()
+        expect(page.locator("#analyze")).to_be_enabled()
         assert not errors, errors
         browser.close()
     print("Desktop and mobile checks passed")

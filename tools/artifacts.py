@@ -9,6 +9,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 ROOT = Path(__file__).resolve().parents[1]
 PAYLOAD = (
     "requirements.txt",
+    "requirements-web.txt",
     "configs/lora.json",
     "configs/protocol.json",
     "data/train.jsonl",
@@ -18,6 +19,9 @@ PAYLOAD = (
     "neuraldebugger/data.py",
     "neuraldebugger/settings.py",
     "neuraldebugger/model.py",
+    "neuraldebugger/weights.py",
+    "neuraldebugger/sandbox.py",
+    "configs/model-files.json",
     "neuraldebugger/train.py",
     "THIRD_PARTY.md",
     "LICENSE",
@@ -35,7 +39,14 @@ def verify(folder):
     from safetensors import safe_open
     from neuraldebugger.settings import MODEL, REV
 
-    hashes = json.loads((folder / "sha256.json").read_text())
+    folder = folder.resolve(strict=True)
+    def regular_file(name):
+        path = folder / name
+        if path.is_symlink() or not path.is_file() or path.resolve().parent != folder:
+            raise ValueError("Expected a regular file in the adapter directory")
+        return path
+
+    hashes = json.loads(regular_file("sha256.json").read_text(encoding="utf8"))
     required = {"metadata.json", "adapter_config.json", "adapter_model.safetensors"}
     if not required.issubset(hashes):
         raise ValueError("Incomplete adapter manifest")
@@ -47,8 +58,9 @@ def verify(folder):
             or "\\" in name
         ):
             raise ValueError("Unexpected manifest path")
-        if hashlib.sha256((folder / name).read_bytes()).hexdigest() != digest:
-            raise ValueError("Checksum mismatch: " + name)
+        with regular_file(name).open("rb") as content:
+            if hashlib.file_digest(content, "sha256").hexdigest() != digest:
+                raise ValueError("Checksum mismatch: " + name)
     meta = json.loads((folder / "metadata.json").read_text())
     if (meta["model"], meta["revision"]) != (MODEL, REV):
         raise ValueError("Incorrect base model")

@@ -1,0 +1,35 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "smoke": false,
+  "device": "cuda",
+  "trainable": 1089536,
+  "config": {
+    "seed": 20261122,
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "targets": [
+      "q_proj",
+      "v_proj"
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.00015,
+    "weight_decay": 0.01,
+    "epochs": 3,
+    "max_sequence_length": 768,
+    "batch_size": 1,
+    "gradient_accumulation": 4,
+    "max_grad_norm": 1
+  },
+  "split_hashes": {
+    "train": {
+      "rows": 118,
+      "sha256": "1766e06b106f0396cba9f72b15607cbcd2b41210d69313dfa4568c1db316f7b8"
+    },
+    "validation": {
+      "rows": 22,
+      "sha256": "0947a85041bc663dfe31a79badcca137a43bff08dad4a50122c5f6a6b72b7f2d"
+    }
+  }
+}

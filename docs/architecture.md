@@ -20,6 +20,12 @@ I designed this service for a single local user. Bind to loopback. It has no mul
 
 For a directly evidenced call that tests a bound string strip method, the worker supplies a labeled Python semantics check for the prose. It examines the AST and a literal-string failing call. The model still supplies the patch. The offline benchmark evaluates raw generations and bypasses this presentation rule.
 
+## Local trust boundary
+
+I verify the base configuration, weights, tokenizer and generation settings against the pinned revision before loading. The adapter path is chosen by the person running the server. The request schema accepts only code and traceback. I use a local safetensors checkpoint and construct the LoRA architecture from the project's training settings. Unexpected adapter configurations or missing files activate the base fallback. I treat the checkout, its manifests and the local administrator as trusted.
+
+I use the WASI guest for historical fixture generation as well as v2 corpus verification and offline patch scoring. The HTTP service never imports a submitted module or runs a proposed correction. The worker tokenizes the submission; the narrow truthiness check reads its AST. [Sandbox limits and tests](evaluation.md)
+
 ## Hybrid inference
 
 I use one Transformers backbone with an unmerged PEFT adapter. The adapter generates a category value first. I then enter PEFT's disable_adapter context and run a fresh base-model repair with the complete code and observed failure. Each stage has its own prompt and generation cache. The worker already serializes requests, so another user cannot interleave adapter state changes during a repair. Leaving the context restores the adapter even if generation raises.

@@ -1,0 +1,30 @@
+{
+  "protocol": {
+    "original": {
+      "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "manifest": "73d3d6994503fd3cbc2ba9d6725f37ac40b6dfc35b0ca7f3ca49dd11bb0ddc2b",
+      "seed": 20261122,
+      "device": "NVIDIA GeForce RTX 4070 SUPER",
+      "files": {
+        "configs/protocol.json": "e20683f454385aa399d48e1ea9358483098d23dc77621f9abc6a800b5af1fb75",
+        "configs/lora.json": "23eb245a5d9d2d54633528300df58600e54fee247f11ce8d08bca5ccdfdf9083",
+        "neuraldebugger/model.py": "975f65418005db0c3b1be5c2c37a22cf6b262ee16870f6f163fdda4ad4d36e52",
+        "neuraldebugger/schema.py": "0a602cd9914dc8b481dc96b24e161d0dfe226ac60f61f38e4c0d8edb476c8954",
+        "neuraldebugger/sandbox.py": "a31ae126d25701d7415caa4f7e9e6e971584fb2ce6af0cd4bcfa5f49829c39f1",
+        "neuraldebugger/corpus.py": "1cbc6c682a66b9b7b3c0016e141b1759a7d5767177d89056fbbf5af4f04617e0",
+        "neuraldebugger/trial.py": "c7701bdbd178fa35a492b30a2cf73d67857e3362d8894b139a8130192f7052bc"
+      }
+    },
+    "files": {
+      "configs/hybrid.json": "f31fc20b80e84e66ab4d3071c7ba8041f7586d998fa7d310bd74f15461d78515",
+      "configs/hybrid-selection.json": "f13fe664e02ee2cffa2b8fe0d6618da40747ac7e903c78d7f82dee5e72feb6cf",
+      "neuraldebugger/hybrid.py": "d35832412dc297aa12ef829981e2cbc487b0791d6cf9e64427a45f7d448febd2",
+      "neuraldebugger/hybrid_trial.py": "c9c17ea2915ea3da00e7009f891efec31869e491497f38a6ba9238ef7408c773"
+    }
+  },
+  "support_files": {
+    "neuraldebugger/weights.py": "34500d5fa2af5e5d58923dd0f9e98ea1fcc083f68bb275dc63aefe318469dd80",
+    "configs/model-files.json": "b312b1f8cb3d084aadaf610e38f78388af0ecebad23d13f357c68301a5ada490"
+  }
+}

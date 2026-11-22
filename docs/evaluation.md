@@ -16,6 +16,8 @@ I observed a 12.5 percentage-point drop in independent complete repairs from con
 
 On the six validation controls, the base repair passed 12/17 probes without a hint, 12/17 with the correct hint and 8/17 with a deliberately wrong hint. The corresponding complete-repair counts were 3, 2 and 2. Changing only the hint from correct to wrong lost two complete repairs and gained two different ones. For `mbpp-92`, the false IndexError hint led to a patch that shortened the loop to avoid a supposed indexing error, and passing probes fell from three to one. The same intervention improved `mbpp-415` from two passing probes to three. I treat these six cases as a sensitivity check. They do not estimate how often the classifier will make mistakes on new programs.
 
+I replayed the complete matrix in a fresh installation during the release audit. With the included epoch-3 adapter, all 144 responses matched the archived repair text, classifier output, parsed diagnosis and behavioral scores. All 36 display-only repairs matched base-only byte for byte. Latency and allocator measurements depend on the run and are excluded from byte-level comparisons. [Release audit](release-audit.md) · [Replay verifier](../tools/verify_replay.py)
+
 ## Original pilot protocol
 
 I freeze the prompt, test bytes, decoding settings, parser and scorer before training. Each run loads the same model revision, warms up on the first validation case, then generates once per test case in file order. The model sees the buggy function and one observed failure. Additional checks, anchors, and references stay with the scorer. I use greedy decoding with one beam, a 1,536-token input budget, and a 384-token output cap. The adapter command fails if the requested adapter cannot load.

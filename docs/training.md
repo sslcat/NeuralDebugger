@@ -6,6 +6,19 @@ I trained the adapter locally on the RTX 4070 SUPER using 118 verified training 
 
 To reproduce the bounded run from a clean experiment checkout, use the protocol-freeze commit 959c998, install the pinned environment, download the pinned model and WASI interpreter, and run `python -m neuraldebugger.trial run` with an empty results/v2 and .runs/v2-lora destination. The controller launches the base benchmark, the 900-second-limited training subprocess and the selected adapter benchmark, in that order. It records telemetry independently of the trainer. The release checkout contains the actual result directories; keep them intact. Use `python -m neuraldebugger.report finish` in the release checkout to recompute the scored report with the recorded masked ratings and key. [Loss trace](../results/v2/loss.jsonl) · [Checkpoints](../results/v2/checkpoints.json) · [Hardware measurements](../results/v2/hardware.json)
 
+## Reproduce training with this checkout
+
+I first install the README dependencies, fetch the pinned model, and select CUDA on the local 4070 SUPER. The command below performs three epochs with 90 optimizer updates and writes a new local adapter. It reads only the training and validation partitions. I keep the measured checkpoint under `adapters/epoch-3` so a replay can use the exact evaluated bytes across machines.
+
+```powershell
+$env:ND_DEVICE = "cuda"
+$env:HF_HUB_OFFLINE = "1"
+.venv/Scripts/python -m neuraldebugger.train --expanded --out .runs/retrained
+.venv/Scripts/python -m tools.artifacts verify .runs/retrained/epoch-3
+```
+
+I repeated the full schedule during the release audit. The best epoch was again 3. Validation loss was 0.29034 versus 0.28985 in the archived run. I observed different safetensors digests despite the fixed seed. These settings reproduce the training procedure. Exact historical inference uses the included measured checkpoint. The historical environment inventory is under `configs/windows-environment.txt`. [Audit details](release-audit.md)
+
 ## Original pilot
 
 I selected supervised LoRA on the 1.5B Qwen coder. Its frozen weights occupy roughly 3.1 GB at two bytes per parameter, before activations and runtime overhead. A 16 GB GPU gives this short-sequence adapter experiment room without an additional quantization dependency. The local smoke test and a cloud experiment have different purposes. I keep a one-update smoke adapter out of product defaults.
@@ -19,7 +32,7 @@ python -m tools.artifacts verify .runs/smoke/epoch-1
 python -m neuraldebugger.train --out .runs/main
 ```
 
-Start the main command only after reviewing the approved preflight, smoke artifact, remaining budget and live watchdog. Each command requires a fresh output directory. Epoch directories are inference checkpoints. Restarting a training run starts a new optimizer trajectory. For a reproducible experiment I retain the complete JSONL training log, best-epoch pointer, adapter configuration, model metadata, verified weight file, and the environment manifest. I keep the smoke and main directories separate.
+For any future paid pod run, I would first require a separately approved preflight, smoke artifact, budget and live watchdog. I run the local recipe above without a provider account. Each command requires a fresh output directory. Epoch directories are inference checkpoints. Restarting a training run starts a new optimizer trajectory. For a reproducible experiment I retain the complete JSONL training log, best-epoch pointer, adapter configuration, model metadata, verified weight file, and the environment manifest. I keep the smoke and main directories separate.
 
 For a pod I would use the official PyTorch 2.8 CUDA 12.8 template, check the image digest and CUDA compatibility during preflight, and install the pinned user-space dependencies. I would unpack the training-only payload onto the temporary container disk. The experiment needs no network volume, persistent mount, paid API or service endpoint. After the smoke and main jobs, the controller host must recover artifacts over SSH, run the local checksum and tensor checks, then signal recovery. A failed transfer is a failure path with a deadline. It cannot extend the cost cutoff.
 

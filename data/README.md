@@ -1,6 +1,6 @@
 # Dataset card
 
-I froze a 176-program corpus for the local v2 trial. Each record carries a reproducible failure, a reference repair, a causal explanation, and a source identifier. I verified every reference on its full probe set and required every deliberately broken program to fail at least one probe. Programs supplied by the upstream corpus, reference code, and generated patches for v2 run in the restricted WASI interpreter.
+I froze a 176-program corpus for the local v2 trial. Each record carries a reproducible failure, a reference repair, a causal explanation, and a source identifier. I verified every reference on its full probe set and required every deliberately broken program to fail at least one probe. I run upstream programs, reference code and generated patches in the restricted WASI interpreter. I also moved the legacy fixture builder into the guest and checked that it reproduced the archived rows.
 
 | Partition | Programs | Behavioral probes | Original | Adapted MBPP |
 |---|---:|---:|---:|---:|

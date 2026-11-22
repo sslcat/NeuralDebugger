@@ -1,7 +1,6 @@
 """Compile reviewed, repository-owned fixtures. Never pass submission text here."""
 
 import ast
-import copy
 import hashlib
 import json
 import re
@@ -9,6 +8,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 from .settings import ROOT
+from .sandbox import Sandbox
 
 DATA = ROOT / "data"
 
@@ -50,40 +50,42 @@ def validate_isolation(splits):
             seen.append((split, row, shape(row["corrected_code"])))
 
 
-def observe(code, name, checks):
-    ns = {}
-    exec(compile(code, "<reviewed-fixture>", "exec"), ns)
+def observe(box, code, name, checks):
     failures = []
     for args, expected in checks:
         call = f"{name}({', '.join(map(repr, args))})"
+        # Return repr as a string, including for non-literal objects in legacy fixtures.
+        script = (code + "\ntry:\n print(repr(('value', repr(" + call + "))))"
+                  + "\nexcept Exception as exc:\n print(repr((type(exc).__name__, str(exc))))")
+        raw = box.run(script)
+        if raw is None:
+            raise ValueError("Legacy fixture failed inside WASI")
+        kind, value = ast.literal_eval(raw.decode("utf8"))
+        if kind != "value":
+            failures.append((kind, f"{call}\n{kind}: {value}"))
+            continue
         try:
-            actual = ns[name](*copy.deepcopy(args))
-        except Exception as exc:
-            failures.append(
-                (type(exc).__name__, f"{call}\n{type(exc).__name__}: {exc}")
-            )
-        else:
-            if actual != expected:
-                display = re.sub(r" at 0x[0-9A-Fa-f]+", "", repr(actual))
-                failures.append(
-                    (
-                        "WrongResult",
-                        f"{call}\nAssertionError: expected {expected!r}, observed {display}",
-                    )
-                )
+            if ast.literal_eval(value) == expected:
+                continue
+        except (ValueError, SyntaxError):
+            # One reviewed mutation returns a bound method rather than a literal.
+            pass
+        display = re.sub(r" at 0x[0-9A-Fa-f]+", "", value)
+        failures.append(("WrongResult", f"{call}\nAssertionError: expected {expected!r}, observed {display}"))
     return failures
 
 
 def compile_cases():
+    box = Sandbox()
     splits = defaultdict(list)
     for s in json.loads((DATA / "sources.json").read_text()):
         ref = s["reference"]
         if ref.count(s["old"]) != 1:
             raise ValueError(f"ambiguous mutation {s['id']}")
         mutant = ref.replace(s["old"], s["bad"])
-        if observe(ref, s["function"], s["checks"]):
+        if observe(box, ref, s["function"], s["checks"]):
             raise ValueError(f"incorrect reference {s['id']}")
-        failures = observe(mutant, s["function"], s["checks"])
+        failures = observe(box, mutant, s["function"], s["checks"])
         if not failures:
             raise ValueError(f"undetected mutation {s['id']}")
         category, trace = failures[0]

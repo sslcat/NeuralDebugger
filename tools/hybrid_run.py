@@ -3,7 +3,8 @@
 import argparse
 import os
 from pathlib import Path
-import shutil
+import hashlib
+import json
 import subprocess
 import sys
 
@@ -11,10 +12,21 @@ from neuraldebugger import hybrid_trial
 from neuraldebugger.settings import ROOT
 
 
+def verified_protocol():
+    release = json.loads((ROOT / "configs/release-replay.json").read_text())
+    actual = hybrid_trial.protocol()
+    if actual != release["protocol"]:
+        raise ValueError("Release replay inputs have changed")
+    for name, digest in release["support_files"].items():
+        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
+            raise ValueError("Changed release input: " + name)
+    return actual
+
+
 def evaluate_all(directory):
-    if directory != hybrid_trial.OUT:
-        directory.mkdir(parents=True, exist_ok=False)
-        shutil.copyfile(hybrid_trial.OUT / "freeze.json", directory / "freeze.json")
+    frozen = verified_protocol()
+    directory.mkdir(parents=True, exist_ok=False)
+    (directory / "freeze.json").write_text(json.dumps(frozen, indent=2), encoding="utf8")
     env = dict(os.environ, ND_DEVICE="cuda", HF_HUB_OFFLINE="1", PYTHONUTF8="1",
                TRANSFORMERS_VERBOSITY="error")
     executable = sys.executable
@@ -40,11 +52,13 @@ def evaluate_all(directory):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--out", type=Path, default=hybrid_trial.OUT,
+    parser.add_argument("--out", type=Path, default=ROOT / '.runs/hybrid-replay',
                         help="Fresh destination for a replay of the frozen experiment.")
     parser.add_argument("--arm", choices=hybrid_trial.ARMS, help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.arm:
+        verified_protocol()
+        hybrid_trial.ADAPTER = ROOT / 'adapters'
         hybrid_trial.OUT = args.out.resolve()
         hybrid_trial.evaluate(args.arm)
     else:

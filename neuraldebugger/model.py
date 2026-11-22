@@ -1,16 +1,15 @@
 import json
 import os
-from pathlib import Path
+from .weights import base_directory, load_adapter
 
-from .settings import MODEL, PROTOCOL, REV, ROOT
+from .settings import PROTOCOL, REV
 
 def messages(code, traceback):
     return [{"role": "system", "content": PROTOCOL["system"]},
             {"role": "user", "content": json.dumps({"code": code, "observed_failure": traceback}, ensure_ascii=False)}]
 
 def location():
-    cached = ROOT / ".models/qwen"
-    return str(cached) if cached.joinpath("model.safetensors").exists() else MODEL
+    return base_directory()
 
 def choose_device():
     import torch
@@ -29,20 +28,16 @@ class Engine:
         torch.set_num_threads(int(os.getenv("ND_CPU_THREADS", "6")))
         self.dtype = torch.bfloat16 if self.device == "cpu" or torch.cuda.is_bf16_supported() else torch.float16
         source = location()
-        self.tok = AutoTokenizer.from_pretrained(source, revision=REV)
+        self.tok = AutoTokenizer.from_pretrained(source, revision=REV, local_files_only=True, trust_remote_code=False)
         def base():
             return AutoModelForCausalLM.from_pretrained(source, revision=REV, torch_dtype=self.dtype,
-                use_safetensors=True, device_map={"": self.device}, attn_implementation="sdpa").eval()
+                local_files_only=True, trust_remote_code=False, use_safetensors=True, device_map={"": self.device}, attn_implementation="sdpa").eval()
         self.model = base()
         self.mode = "base"
         self.warning = None
         if adapter:
             try:
-                from peft import PeftModel
-                meta = json.loads((Path(adapter) / "metadata.json").read_text())
-                if (meta["model"], meta["revision"]) != (MODEL, REV):
-                    raise ValueError("adapter revision mismatch")
-                self.model = PeftModel.from_pretrained(self.model, adapter).eval()
+                self.model = load_adapter(self.model, adapter)
                 self.mode = "adapter"
             except Exception:
                 if strict:

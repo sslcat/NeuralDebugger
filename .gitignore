@@ -12,3 +12,6 @@ __pycache__/
 *.pt
 *.pem
 *.key
+
+# Measured adapter needed to replay the published tables.
+!adapters/epoch-3/adapter_model.safetensors

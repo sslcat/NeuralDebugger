@@ -31,7 +31,8 @@ async function status() {
       : (modes[s.mode] || "Model") + " active";
     el("status").textContent = mode;
     el("status").title = s.model + " @ " + s.revision;
-    el("device").textContent = [s.device?.toUpperCase(), s.warning]
+    const experimental = ["adapter", "hybrid-conditioned"].includes(s.mode);
+    el("device").textContent = [s.device?.toUpperCase(), experimental && "Experimental", s.warning]
       .filter(Boolean)
       .join(" · ");
   } catch {
