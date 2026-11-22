@@ -1,0 +1,15 @@
+{
+  "strategy": "training-prefix",
+  "validation": {
+    "category-only": {
+      "correct": 18,
+      "valid": 22,
+      "n": 22
+    },
+    "training-prefix": {
+      "correct": 22,
+      "valid": 22,
+      "n": 22
+    }
+  }
+}

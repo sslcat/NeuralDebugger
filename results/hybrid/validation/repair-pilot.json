@@ -1,0 +1,168 @@
+[
+  {
+    "id": "document-title",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"KeyError\",\"root_cause\":\"The function `title` is trying to access a key named 'title' in the dictionary `doc`, but this key does not exist.\",\"corrected_code\":\"def title(doc):\\n    if 'title' in doc:\\n        return doc['title']\\n    else:\\n        raise ValueError('The document does not have a title.')\",\"explanation\":\"To fix the KeyError, we added a check to see if the key 'title' exists in the dictionary `doc`. If it does, we return its value; otherwise, we raise a ValueError indicating that the document does not have a title.\"}",
+    "label": "KeyError",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      false,
+      true
+    ]
+  },
+  {
+    "id": "document-title",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"KeyError\",\"root_cause\":\"The function `title` is trying to access a key named `'title'` in the dictionary `doc`, but this key does not exist.\",\"corrected_code\":\"def title(doc):\\n    if 'title' in doc:\\n        return doc['title']\\n    else:\\n        return None\",\"explanation\":\"To fix the error, we need to check if the key `'title'` exists in the dictionary `doc` before attempting to access it. If the key does not exist, we can return `None` instead of raising a `KeyError`. This ensures that the function behaves gracefully when encountering missing keys.\"}",
+    "label": "KeyError",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-577",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function is returning 1 instead of 4 for the input 4.\",\"corrected_code\":\"def last_Digit_Factorial(n):\\n    if n < 0:\\n        raise ValueError('Input must be non-negative')\\n    elif n == 0:\\n        return 1\\n    elif n <= 2:\\n        return n\\n    elif n == 3:\\n        return 6\\n    elif n == 4:\\n        return 4\\n    else:\\n        return 0\",\"explanation\":\"The original code was incorrect because it did not handle negative inputs properly. The corrected code includes a check for negative inputs and raises a ValueError if they are encountered. This ensures that the function behaves correctly for both positive and non-positive integers.\"}",
+    "label": "WrongResult",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-577",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function does not correctly compute the last digit of the factorial of a number.\",\"corrected_code\":\"def last_Digit_Factorial(n):\\n    if n < 5:\\n        return n % 10\\n    else:\\n        return last_Digit_Factorial(n // 5) * (n % 5)\",\"explanation\":\"The original function incorrectly computes the factorial by multiplying all numbers from 1 to n. However, this approach does not account for the properties of factorials that only include certain digits at the end. The corrected function uses a recursive approach to break down the problem into smaller subproblems, where each subproblem involves finding the last digit of the factorial of a smaller number. This method ensures that only the relevant digits are considered, leading to the correct result.\"}",
+    "label": "WrongResult",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-92",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function `is_undulating` does not correctly identify undulating numbers.\",\"corrected_code\":\"def is_undulating(n):\\n    n = str(n)\\n    if len(n) <= 2:\\n        return False\\n    for i in range(2, len(n)):\\n        if n[i - 2] != n[i]:\\n            return False\\n    return True\",\"explanation\":\"The original code incorrectly checks if the second character of the string representation of `n` is equal to any other character. This will only work for even-length strings where the first two characters are the same. For odd-length strings, this condition will fail. The corrected code checks if the second character is different from the third character, which correctly identifies undulating numbers.\"}",
+    "label": "WrongResult",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-92",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function `is_undulating` does not correctly identify undulating numbers.\",\"corrected_code\":\"def is_undulating(n):\\n    n = str(n)\\n    if len(n) <= 2:\\n        return False\\n    for i in range(2, len(n)):\\n        if n[i - 2] != n[i]:\\n            return False\\n    return True\",\"explanation\":\"The original function checks if the first two digits are equal and then iterates through the rest of the digits to ensure they are not equal. However, this approach fails when the number has more than two digits that are equal consecutively. To fix this, we need to add an additional condition to check if any digit is repeated more than once.\"}",
+    "label": "WrongResult",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-120",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function is trying to calculate the minimum absolute product of two numbers from each tuple, but it's not correctly handling negative numbers.\",\"corrected_code\":\"def max_product_tuple(list1):\\n    result_max = max(abs(x * y) for x, y in list1)\\n    return result_max\",\"explanation\":\"The original code was calculating the minimum absolute product by finding the minimum value among the absolute products of all pairs. However, this approach does not handle negative numbers properly because the minimum operation will always choose the smallest number, which could be negative if any pair has a negative product.\"}",
+    "label": "WrongResult",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-120",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function does not correctly calculate the maximum absolute product.\",\"corrected_code\":\"def max_product_tuple(list1):\\n    result_max = max(abs(x * y) for x, y in list1)\\n    return result_max\",\"explanation\":\"The original function calculates the minimum absolute product by taking the minimum value of the absolute products of each pair. However, this approach will not give the correct maximum absolute product because it only considers the smallest product among all pairs. To get the maximum absolute product, we should consider the largest product among all pairs.\"}",
+    "label": "WrongResult",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-415",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function does not handle negative numbers correctly.\",\"corrected_code\":\"def max_Product(arr):\\n    arr_len = len(arr)\\n    if arr_len < 2:\\n        return 'No pairs exists'\\n    x = arr[0]\\n    y = arr[1]\\n    for i in range(0, arr_len):\\n        for j in range(i + 1, arr_len):\\n            if abs(arr[i]) * abs(arr[j]) > abs(x) * abs(y):\\n                x = arr[i]\\n                y = arr[j]\\n    return (x, y)\",\"explanation\":\"The original code incorrectly compares the products of positive numbers only. It should compare the absolute values of the products to ensure that both positive and negative numbers are considered. This change ensures that the function correctly identifies the pair with the highest product.\"}",
+    "label": "WrongResult",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-415",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function does not correctly handle negative numbers.\",\"corrected_code\":\"def max_Product(arr):\\n    arr_len = len(arr)\\n    if arr_len < 2:\\n        return 'No pairs exists'\\n    x = arr[0]\\n    y = arr[1]\\n    for i in range(0, arr_len):\\n        for j in range(i + 1, arr_len):\\n            if abs(arr[i]) * abs(arr[j]) > abs(x) * abs(y):\\n                x = arr[i]\\n                y = arr[j]\\n    return (x, y)\",\"explanation\":\"The original function incorrectly compares absolute values instead of products, leading to incorrect results when dealing with negative numbers.\"}",
+    "label": "WrongResult",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      true,
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-138",
+    "arm": "hybrid-display",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function `is_Sum_Of_Powers_Of_Two` incorrectly returns `True` for even numbers.\",\"corrected_code\":\"def is_Sum_Of_Powers_Of_Two(n):\\n    if n == 0:\\n        return False\\n    elif n % 2 != 1:\\n        return False\\n    else:\\n        return True\",\"explanation\":\"The original function checks if the number is odd by checking if it's divisible by 2. However, this does not correctly determine if the number can be represented as a sum of non-zero powers of 2. The correct approach is to first check if the number is zero, in which case it cannot be represented as such a sum. Then, we check if the number is even, in which case it cannot be represented as a sum of non-zero powers of 2. Finally, we check if the number is odd, in which case it can be represented as a sum of non-zero powers of 2.\"}",
+    "label": "WrongResult",
+    "conditioned": false,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "id": "mbpp-138",
+    "arm": "hybrid-conditioned",
+    "raw": "{\"category\":\"WrongResult\",\"root_cause\":\"The function `is_Sum_Of_Powers_Of_Two` does not correctly determine if a number can be represented as the sum of non-zero powers of 2.\",\"corrected_code\":\"def is_Sum_Of_Powers_Of_Two(n):\\n    if n == 0:\\n        return False\\n    elif n & (n - 1) == 0:\\n        return True\\n    else:\\n        return False\",\"explanation\":\"The original function checks if the number is odd, which is incorrect because any number that can be expressed as the sum of non-zero powers of 2 must be even. Additionally, the condition `n & (n - 1) == 0` checks if the number is a power of 2, but this is not sufficient to determine if it can be expressed as the sum of non-zero powers of 2. The correct approach is to check if the number is zero or if it is a power of 2.\"}",
+    "label": "WrongResult",
+    "conditioned": true,
+    "invalid": false,
+    "category": true,
+    "passes": [
+      false,
+      true,
+      false
+    ]
+  }
+]
