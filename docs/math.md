@@ -5,13 +5,13 @@
 I tokenize a chat transcript into indices $x_1,\ldots,x_T$. A causal language model factors its probability as
 
 $$
-p_\theta(x_{1:T})=\prod_{t=1}^{T} p_\theta(x_t\mid x_{<t}).
+p_\theta(x_{1:T})=\prod_{t=1}^{T} p_\theta(x_t\mid x_{\lt t}).
 $$
 
 A transformer block projects hidden states into queries, keys and values. One attention head computes
 
 $$
-A=\operatorname{softmax}\!\left(QK^\top/\sqrt{d_k}+M\right)V,
+A=\mathrm{softmax}\left(QK^\top/\sqrt{d_k}+M\right)V,
 $$
 
 where the causal mask $M$ gives future positions a logit of negative infinity. Attention mixes earlier token information. The output layer turns the final hidden state into vocabulary logits. Qwen supplies these pretrained blocks and embeddings.
@@ -21,7 +21,7 @@ where the causal mask $M$ gives future positions a logit of negative infinity. A
 For assistant target positions $S$, I minimize the mean negative log-likelihood
 
 $$
-L=-\frac1{|S|}\sum_{t\in S}\log \operatorname{softmax}(z_{t-1})_{x_t}.
+L=-\frac1{|S|}\sum_{t\in S}\log \mathrm{softmax}(z_{t-1})_{x_t}.
 $$
 
 The logit at position $t-1$ predicts token $t$. The training encoder sets prompt labels to the ignore index $-100$. Transformers shifts the labels internally. I check that the prompt token IDs are an exact prefix of the full training transcript. Each microbatch contains one case. Gradient accumulation averages these per-case losses, so cases have equal weight even if their answer lengths differ.
