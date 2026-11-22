@@ -1,6 +1,6 @@
 # Local release audit
 
-On 22 November 2026 I started with commit `06332dfc4c74d328cb23c93226da560933591620` and used a separate local clone, clean Python environments, and an anonymous download of the exact model revision. All compute ran on this workstation. The audit required internet access for public packages and initial artifact downloads. I used offline inference, training and evaluation after fetching the artifacts.
+On 22 November 2026 I started with commit `046c126b7223` and used a separate local clone, clean Python environments, and an anonymous download of the exact model revision. All compute ran on this workstation. The audit required internet access for public packages and initial artifact downloads. I used offline inference, training and evaluation after fetching the artifacts.
 
 ## Installation and reproduction
 
