@@ -1,0 +1,30 @@
+{"key": "0daab11ba7ed6849df948a8cf306ee6690e4e178ba769cc3d78b6d3273e5ae35", "scores": [0, 0], "note": "Misses the valid zero index and claims next raises despite its supplied default."}
+{"key": "669608e4d0a5972788a38eaa05eccbd8a1153ebd94401776170de00ca735ae7d", "scores": [2, 2], "note": "Names the mismatched literal and serial types and explains conversion to text."}
+{"key": "9fd37c68472f98a56aec5ef553eb7a75e8a4456c381826b21e3a193a16a0be1f", "scores": [2, 0], "note": "Identifies the two-value unpacking mismatch, but swallowing the error discards the required data."}
+{"key": "ec95cd571e57199de60ce8e0810965238c8a64ecd4ed1814925227338747f5a7", "scores": [1, 0], "note": "Identifies the negative-number symptom and addition but suggests a type filter that cannot repair the sign."}
+{"key": "5b9f55a150768bc39e6719a13b705ca25f7b05257d88f9d59afbded42fbb9976", "scores": [0, 0], "note": "Attributes failure to separate calls rather than shared inner rows."}
+{"key": "32c141ef23f54bf47e05e6b9a776923443251be37d3fe81f0e5d08f865f31ade", "scores": [2, 2], "note": "Connects the zero-based letter offset to the one-based contract."}
+{"key": "b4a75b0595b5ece3e33b4ce07db2b5c2adfb5baa63e8a2ea4cfbd05f879fc6d4", "scores": [1, 0], "note": "Recognizes a one-pass iterator, but invents a second iter call and falsely claims it would be forbidden."}
+{"key": "331aa12d4f00e9334d323f142ccb6d61e6fd6290a4c8e9a46554c74bf41d81b1", "scores": [1, 2], "note": "States the conversion failure; the explanation names ValueError and the correct return."}
+{"key": "b597ce58c0639a8f42dff58693ca6419dc2bb91d9124a3010fe72b3775990a99", "scores": [0, 0], "note": "Invents a comprehension and misses the =+ assignment."}
+{"key": "d781f70e6799a96297ed6fbd475a317d707f472ad201c65a5fca9bd5e3ed01ef", "scores": [1, 1], "note": "Identifies retained state across calls but omits the persistent default mechanism and concrete sentinel fix."}
+{"key": "0f76d63d24a39caedf18e01613701e081e38abfc129871b85af07a0c2b9f9750", "scores": [1, 0], "note": "Recognizes that values alone lose keys, but mistakes the view for an iterator and suggests an ineffective list conversion."}
+{"key": "3c4969bfdea66f3f04ef5de1f5ad10d1db8886630ec2b8fa2b305096bfeb10b1", "scores": [1, 1], "note": "Describes the duplicate second value without explaining when the first value was lost or how to preserve it."}
+{"key": "75eb8c75458b3f089427397769a145ecae68887624826275a274afc296b1a643", "scores": [0, 0], "note": "Mistakes result indexing for an argument and proposes preserving the wrong side of the delimiter."}
+{"key": "95210bb1c8ce9146c24702cd46371f9fdc78af2abd424b2e68b7eaf7fef447fc", "scores": [0, 2], "note": "Misidentifies both operands in the cause. The explanation correctly converts the stored text before addition."}
+{"key": "fdbfe14687dbddb9d1ad53b40cd15a9a2943afdd6337aa2dc2ccf965d9e3610d", "scores": [2, 2], "note": "Points to the missing outer key and protects that lookup with the required default."}
+{"key": "e083826030f4c76fbb8348b2363afaf7393e922c3b59a07264ba116083e45bb5", "scores": [1, 1], "note": "Identifies the missing sentinel and its guard but misstates the result of slicing at minus one."}
+{"key": "29685c43712ba2db4faa40cda3b1fae3e358c2bd4380dd6efe61e68d5a6df058", "scores": [0, 1], "note": "Misses the suppressed successful return. The handler advice correctly skips only malformed items."}
+{"key": "f43ca536c2aba71af89868492946871522548bee6963cb0a2db7321c5946ed2d", "scores": [0, 2], "note": "Predicts the wrong branch for a truthy dot, but correctly explains how right partition retains earlier dots."}
+{"key": "7fb0d5ef2fbafd01d912404a436acd167ba7e45b263e71e6ee303f18eb5a959d", "scores": [2, 2], "note": "Explains the empty denominator and the early return."}
+{"key": "22eed9534042eeb9ea947f5765797f05e261b93d259b0ff340a2ff6c60da32d3", "scores": [1, 1], "note": "Recognizes retained history and the None fix, but omits default creation time and overstates freshness for explicit histories."}
+{"key": "ccf318dc76e48b5a184238ae3bb7d2547e1526bd7ead1de6a4ed09322f751fd4", "scores": [0, 0], "note": "Describes a method call absent from the code, invents a length check and misses the bound method."}
+{"key": "e774a0f8e606e0bc90c4981274fb2c384a95c4f5b85dec36edb342f7b99b76e8", "scores": [2, 1], "note": "Identifies string operands and integer conversion, but misdescribes the failure as adding two strings."}
+{"key": "9d67cfb78ce61972bb81de0841f1a6d7ac9fef09281efec29107469b13b91d64", "scores": [1, 0], "note": "Gets the operand types but misses enumerate and suggests concatenating text instead of summing each row."}
+{"key": "5eb35758eac2e9f9b77e311adc7925863bbb3d23e09356db984d5aa5e7634e31", "scores": [2, 2], "note": "Identifies the missing set method and its correct replacement."}
+{"key": "8e200f9a070ced9f305b5479271df56b8b5c0fdd5bf8af286d090b2f94825cd3", "scores": [2, 2], "note": "Explains the exclusive stop and its inclusive adjustment."}
+{"key": "47f13d4ecc1324a37442706d1bc503831a7473147c440e67fbb1e43d28447ce0", "scores": [2, 2], "note": "Explains last-index lookahead and the boundary guard."}
+{"key": "dfaca5d6787fb013f91768d29214857e2a93476f6c38a7c4a5c596cd6ec1f25e", "scores": [2, 2], "note": "Connects first access of a missing bucket to initialization before append."}
+{"key": "7be85191f279333dd00a7500bb004e63518b1771530e798336b8d8ef5d674edf", "scores": [0, 0], "note": "Attributes the omitted chunk to slicing and suggests padding outside the contract."}
+{"key": "ddddccaca9aaf1e34207706b3c1a2214978f6add38033605a948c21af5eca6e4", "scores": [0, 0], "note": "Reverses bytes and text and reverses the direction of decoding."}
+{"key": "cdae378f87b7387aa7f3168946e795be4c679d830eab688510ecaf57b6d47881", "scores": [1, 0], "note": "Locates the bad condition and gives the right expression but incorrectly calls the upper bound inclusive."}

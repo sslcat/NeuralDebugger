@@ -1,0 +1,42 @@
+{
+  "base": {
+    "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "configured": "base",
+    "mode": "base",
+    "device": "cuda",
+    "warning": null
+  },
+  "adapter": {
+    "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "configured": "adapter",
+    "mode": "adapter",
+    "device": "cuda",
+    "warning": null
+  },
+  "hybrid-display": {
+    "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "configured": "hybrid-display",
+    "mode": "hybrid-display",
+    "device": "cuda",
+    "warning": null
+  },
+  "hybrid-conditioned": {
+    "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "configured": "hybrid-conditioned",
+    "mode": "hybrid-conditioned",
+    "device": "cuda",
+    "warning": null
+  },
+  "missing-adapter": {
+    "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "configured": "hybrid-conditioned",
+    "mode": "base",
+    "device": "cuda",
+    "warning": "Adapter could not load. The base model is active."
+  }
+}

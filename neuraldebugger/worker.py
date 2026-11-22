@@ -3,8 +3,7 @@ import os
 import sys
 
 from .facts import checked_prose
-from .model import Engine
-from .schema import parse
+from .hybrid import HYBRIDS, Pipeline
 
 
 def emit(value):
@@ -13,21 +12,31 @@ def emit(value):
 
 def main():
     backend = os.getenv("ND_BACKEND", "base")
-    if backend not in {"base", "adapter"}:
-        raise ValueError("Unknown backend")
-    adapter = os.getenv("ND_ADAPTER") if backend == "adapter" else None
-    engine = Engine(adapter)
-    warning = engine.warning
-    if backend == "adapter" and not adapter:
-        warning = "Adapter path missing. The base model is active."
-    status = {"mode": engine.mode, "device": engine.device, "warning": warning}
+    pipeline = Pipeline(backend, os.getenv("ND_ADAPTER"))
+    status = {
+        "mode": pipeline.mode,
+        "device": pipeline.engine.device,
+        "warning": pipeline.warning,
+    }
     emit(status)
     for line in sys.stdin:
         item = json.loads(line)
         try:
-            answer = parse(engine.predict(item["code"], item["traceback"]))
+            prediction = pipeline.predict(item["code"], item["traceback"])
+            answer = prediction.diagnosis()
             answer, source = checked_prose(item["code"], item["traceback"], answer)
-            emit({"diagnosis": answer.model_dump(), "prose_source": source, **status})
+            response = {
+                "diagnosis": answer.model_dump(),
+                "prose_source": source,
+                **status,
+            }
+            if pipeline.mode in HYBRIDS:
+                response["hybrid"] = {
+                    "classifier_category": prediction.classifier_label,
+                    "conditioned": prediction.conditioned,
+                    "fallback": prediction.fallback,
+                }
+            emit(response)
         except OverflowError as exc:
             emit({"error": str(exc), "status": 422})
         except ValueError:

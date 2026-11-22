@@ -20,14 +20,15 @@ loadExample("price");
 async function status() {
   try {
     const s = await (await fetch("/api/status")).json();
-    const mode =
-      s.mode === "unloaded"
-        ? s.configured === "base"
-          ? "Base · on demand"
-          : "Adapter · pending load"
-        : s.mode === "adapter"
-          ? "LoRA adapter active"
-          : "Base model active";
+    const modes = {
+      base: "Base model",
+      adapter: "LoRA adapter",
+      "hybrid-display": "Hybrid · display only",
+      "hybrid-conditioned": "Hybrid · conditioned",
+    };
+    const mode = s.mode === "unloaded"
+      ? (modes[s.configured] || "Model") + " · on demand"
+      : (modes[s.mode] || "Model") + " active";
     el("status").textContent = mode;
     el("status").title = s.model + " @ " + s.revision;
     el("device").textContent = [s.device?.toUpperCase(), s.warning]
@@ -78,6 +79,9 @@ el("form").onsubmit = async (event) => {
     el("reason").textContent = a.explanation;
     el("fixed").textContent = a.corrected_code;
     el("category").textContent = a.category;
+    const route = data.hybrid;
+    el("repair-route").hidden = !route;
+    el("repair-route").textContent = route ? (route.fallback || (route.conditioned ? "Adapter category supplied to base repair." : "Adapter category displayed alongside independent base repair.")) : "";
     el("copy").textContent = "Copy code";
   } catch (error) {
     showMessage(

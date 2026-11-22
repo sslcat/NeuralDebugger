@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.jsonl text eol=lf
 *.svg text eol=lf
+# Keep the frozen validation selection byte-identical on checkout.
+configs/hybrid-selection.json -text !eol whitespace=trailing-space,space-before-tab,cr-at-eol

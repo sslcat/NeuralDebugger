@@ -1,0 +1,79 @@
+[
+  {
+    "id": "document-title",
+    "gold": "KeyError",
+    "forced_hint": "WrongResult",
+    "raw": "```json\n{\n  \"category\": \"TypeError\",\n  \"root_cause\": \"The function `title` expects a dictionary as its argument, but it received an empty dictionary.\",\n  \"corrected_code\": \"def title(doc):\\n    if 'title' in doc:\\n        return doc['title']\\n    else:\\n        raise ValueError('Document does not have a title')\",\n  \"explanation\": \"The original function did not check if the input dictionary had a key named 'title'. If the dictionary was empty, it would raise a KeyError. To fix this, we added a check to see if the key exists before trying to access it. If the key does not exist, we raise a ValueError instead of raising a KeyError.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-577",
+    "gold": "WrongResult",
+    "forced_hint": "IndexError",
+    "raw": "```json\n{\n  \"category\": \"ValueError\",\n  \"root_cause\": \"The function `last_Digit_Factorial` does not handle negative numbers correctly.\",\n  \"corrected_code\": \"def last_Digit_Factorial(n):\\n    if n < 0:\\n        raise ValueError('Input must be non-negative')\\n    if n == 0:\\n        return 1\\n    elif n <= 2:\\n        return n\\n    elif n == 3:\\n        return 6\\n    elif n == 4:\\n        return 4\\n    else:\\n        return 0\",\n  \"explanation\": \"The original function incorrectly returns 0 for negative inputs, which is incorrect because the factorial of any negative number is undefined. We added a check at the beginning of the function to raise a `ValueError` if the input is negative.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-92",
+    "gold": "WrongResult",
+    "forced_hint": "IndexError",
+    "raw": "```json\n{\n  \"category\": \"ValueError\",\n  \"root_cause\": \"The input number '1212121' has more than two digits, but the loop condition checks only up to the second last digit.\",\n  \"corrected_code\": \"def is_undulating(n):\\n    n = str(n)\\n    if len(n) <= 2:\\n        return False\\n    for i in range(2, len(n) - 1):  # Corrected loop condition to avoid IndexError\\n        if n[i - 2] == n[i]:\\n            return False\\n    return True\",\n  \"explanation\": \"The original code was trying to compare the third digit with the first digit of the next pair, which would cause an IndexError if the length of the number were less than three. The corrected code adjusts the loop condition to ensure that it does not attempt to access indices beyond the end of the string.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      false,
+      false,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-120",
+    "gold": "WrongResult",
+    "forced_hint": "IndexError",
+    "raw": "```json\n{\n  \"category\": \"ValueError\",\n  \"root_cause\": \"The function `min` expects an iterable, but the expression `[abs(x * y) for x, y in list1]` returns a generator, which cannot be directly passed to `min`. To fix this, convert the generator to a list before passing it to `min`.\",\n  \"corrected_code\": \"def max_product_tuple(list1):\\n    result_max = min([abs(x * y) for x, y in list1])\\n    return result_max\",\n  \"explanation\": \"The error occurs because `min` expects an iterable, but the expression `[abs(x * y) for x, y in list1]` returns a generator. To resolve this, we need to convert the generator to a list before passing it to `min`. This ensures that `min` receives a complete sequence of values to compare.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "id": "mbpp-415",
+    "gold": "WrongResult",
+    "forced_hint": "IndexError",
+    "raw": "```json\n{\n  \"category\": \"ValueError\",\n  \"root_cause\": \"The loop condition `i < arr_len` should be `i < arr_len - 1` because the last iteration will try to access `arr[arr_len - 1]`, which is out of bounds.\",\n  \"corrected_code\": \"def max_Product(arr):\\n    arr_len = len(arr)\\n    if arr_len < 2:\\n        return 'No pairs exists'\\n    x = arr[0]\\n    y = arr[1]\\n    for i in range(0, arr_len - 1):\\n        for j in range(i + 1, arr_len):\\n            if arr[i] * arr[j] > x * y:\\n                x = arr[i]\\n                y = arr[j]\\n    return (x, y)\",\n  \"explanation\": \"The original code had an off-by-one error in the inner loop's range. It was trying to compare `arr[i] * arr[j]` with `x * y` when `j` reached `arr_len - 1`, which would cause an IndexError. The corrected code adjusts the range to ensure that `j` does not exceed `arr_len - 2`. This prevents the out-of-bounds access and resolves the AssertionError.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "id": "mbpp-138",
+    "gold": "WrongResult",
+    "forced_hint": "IndexError",
+    "raw": "```json\n{\n  \"category\": \"ValueError\",\n  \"root_cause\": \"The condition `if n % 2 != 1:` should be `if n & 1 != 0:` to correctly check if a number is odd.\",\n  \"corrected_code\": \"def is_Sum_Of_Powers_Of_Two(n):\\n    if n & 1 != 0:\\n        return True\\n    else:\\n        return False\",\n  \"explanation\": \"The bitwise AND operator (`&`) is used instead of modulo operation (`%`) in the condition to check if a number is odd. This ensures that the function correctly identifies numbers that are not powers of two.\"\n}\n```",
+    "invalid": false,
+    "category": false,
+    "passes": [
+      false,
+      false,
+      false
+    ]
+  }
+]

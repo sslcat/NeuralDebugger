@@ -28,6 +28,8 @@ Paste a Python function and its exception or failing input/output pair. Select *
 | `ND_DEVICE=auto` | Uses CUDA when available with more than 4.5 GiB free, otherwise CPU. Also accepts cpu or cuda. |
 | `ND_BACKEND=base` | Default pinned Transformers backend. |
 | `ND_BACKEND=adapter`, `ND_ADAPTER=PATH` | Loads a PEFT checkpoint with matching NeuralDebugger metadata. Reports fallback if unavailable. |
+| `ND_BACKEND=hybrid-display`, `ND_ADAPTER=PATH` | Displays the adapter category alongside an independent base-model repair. |
+| `ND_BACKEND=hybrid-conditioned`, `ND_ADAPTER=PATH` | Also passes the adapter category to the base repair as a fallible hint. |
 | `ND_TIMEOUT=150` | Seconds before the service terminates its inference worker. Includes first load. |
 | `ND_CPU_THREADS=6` | CPU intra-op thread count used for the recorded baseline. |
 | `HF_HUB_OFFLINE=1` | Uses already-present artifacts without contacting Hugging Face. |
@@ -55,6 +57,14 @@ I trained 1,089,536 LoRA parameters for 90 updates in 47.58 seconds including st
 ![Measured training and validation cross-entropy over 90 updates](results/v2/loss.png)
 
 The raw base response to the legacy truthiness example claimed an empty string was truthy. The function actually tested a bound method. The workbench now shows a labeled Python semantics check for this specific, statically evidenced case. The benchmark continues to score the raw model output. [Regression test](tests/test_facts.py) · [Original CPU baseline](results/base-v1/summary.json)
+
+## What the hybrid changed
+
+I tested whether the adapter could supply a better error label while the base model handled the repair. I ran both stages on one copy of the foundation model. The adapter classified all 24 independent and all 12 legacy cases correctly when I stopped decoding after the category. A valid first-stage label still needs a usable repair response to reach the workbench.
+
+On the independent suite, displaying the label alongside an ordinary base repair gave 23/24 correct end-to-end categories, 20/24 complete repairs and 64/73 passing checks. Feeding that same label back into the repair prompt gave 21/24 correct categories, 17/24 complete repairs and 56/73 passing checks. On the legacy suite, the two hybrids repaired 10/12 and 8/12 respectively. I kept base-only as the default. I use display-only when the category itself matters. [Four-arm comparison](results/hybrid/comparison.md) · [Every paired case](results/hybrid/all-cases.md) · [Running a hybrid](docs/hybrid-usage.md)
+
+On the independent suite, base-only and display-only both scored 0.96/2 for root cause and 1.17/2 for explanation. Conditioning scored 0.92/2 on each. Display-only took a median 9.36 seconds against 6.77 seconds for base-only in this run. Peak PyTorch allocations were 2.909 and 2.905 GiB respectively. I saw zero natural classifier mistakes across these small suites. In a separate six-program validation check, deliberately wrong hints reduced passing probes from 12/17 with a correct hint to 8/17.
 
 ## Reproduce the checks
 

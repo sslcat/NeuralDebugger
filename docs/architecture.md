@@ -19,3 +19,11 @@ I use JSONL for the offline corpora and experiment outputs so individual cases c
 I designed this service for a single local user. Bind to loopback. It has no multi-tenant authentication or public-service abuse controls.
 
 For a directly evidenced call that tests a bound string strip method, the worker supplies a labeled Python semantics check for the prose. It examines the AST and a literal-string failing call. The model still supplies the patch. The offline benchmark evaluates raw generations and bypasses this presentation rule.
+
+## Hybrid inference
+
+I use one Transformers backbone with an unmerged PEFT adapter. The adapter generates a category value first. I then enter PEFT's disable_adapter context and run a fresh base-model repair with the complete code and observed failure. Each stage has its own prompt and generation cache. The worker already serializes requests, so another user cannot interleave adapter state changes during a repair. Leaving the context restores the adapter even if generation raises.
+
+The display-only path uses the original base repair prompt. The conditioned path adds a structured classifier_hint field to the user message and tells the base model to verify it. When the short classification output is unusable, the base repair supplies its own category. When a valid hint would exceed the token budget, the worker retains the complete original request and omits the hint. A missing or unloadable adapter activates the existing base backend.
+
+POST /api/analyze retains the original diagnosis schema. A hybrid response also includes a hybrid object containing classifier_category, conditioned, and fallback. The UI shows the active configuration and what happened on that request. The existing Python semantics check runs on the resulting prose after inference. The offline experiment records the original repair text and classifier completion before any presentation corrections.

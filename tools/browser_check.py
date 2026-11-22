@@ -12,7 +12,9 @@ def main():
     parser.add_argument("--url", default="http://127.0.0.1:18642")
     parser.add_argument("--analyze", action="store_true")
     parser.add_argument("--shot-dir", type=Path)
+    parser.add_argument("--expect", choices=["base","adapter","hybrid-display","hybrid-conditioned"],default="base")
     args = parser.parse_args()
+    badge={"base":"Base model","adapter":"LoRA adapter","hybrid-display":"Hybrid · display only","hybrid-conditioned":"Hybrid · conditioned"}[args.expect]
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel="msedge", headless=True)
         page = browser.new_page(viewport={"width": 1440, "height": 960})
@@ -20,7 +22,7 @@ def main():
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto(args.url)
         expect(page.get_by_role("heading", name="Debug a failure.")).to_be_visible()
-        expect(page.locator("#status")).to_contain_text("Base", ignore_case=True)
+        expect(page.locator("#status")).to_contain_text(badge, ignore_case=True)
         page.select_option("#examples", "minute")
         expect(page.locator("#code")).to_have_value(
             re.compile("clock_parts")
@@ -30,7 +32,11 @@ def main():
             expect(page.locator("#message")).to_contain_text("Analyzing locally")
             expect(page.locator("#result")).to_be_visible(timeout=165000)
             expect(page.locator("#fixed")).to_contain_text("clock_parts")
-            expect(page.locator("#status")).to_contain_text("Base model active")
+            expect(page.locator("#status")).to_contain_text(badge+" active")
+            if args.expect.startswith("hybrid-"):
+                expect(page.locator("#repair-route")).to_be_visible()
+                required = "supplied to base repair" if args.expect.endswith("conditioned") else "independent base repair"
+                expect(page.locator("#repair-route")).to_contain_text(required)
             print("Live model:", page.locator("#category").inner_text())
         for label, width, height in (("desktop", 1440, 960), ("mobile", 390, 844)):
             page.set_viewport_size({"width": width, "height": height})

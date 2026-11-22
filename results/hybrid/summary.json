@@ -1,0 +1,2331 @@
+{
+  "test": {
+    "base": {
+      "metrics": {
+        "repair": 0.8333333333333334,
+        "checks": 0.8888888888888888,
+        "category": 0.5833333333333334,
+        "invalid": 0,
+        "cause": 1.4166666666666667,
+        "explanation": 1.25,
+        "seconds": 7.59631640000589
+      },
+      "counts": {
+        "repairs": 10,
+        "probes": 32,
+        "total_probes": 36,
+        "categories": 7,
+        "invalid": 0
+      },
+      "peak_allocated_bytes": 3116786688,
+      "peak_reserved_bytes": 3156213760,
+      "by_category": {
+        "IndexError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 8.165129600005457
+        },
+        "KeyError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 7.055114600007073
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.3333333333333333,
+          "explanation": 0.6666666666666666,
+          "seconds": 6.9812200000014855
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 8.3657050000038
+        },
+        "WrongResult": {
+          "n": 5,
+          "repair": 0.8,
+          "checks": 0.8666666666666667,
+          "category": 0,
+          "invalid": 0,
+          "cause": 1.2,
+          "explanation": 1.2,
+          "seconds": 7.694666499999585
+        },
+        "ZeroDivisionError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 7.4979663000121946
+        }
+      }
+    },
+    "adapter": {
+      "metrics": {
+        "repair": 0.5,
+        "checks": 0.5833333333333334,
+        "category": 0.9166666666666666,
+        "invalid": 0.08333333333333333,
+        "cause": 0.4166666666666667,
+        "explanation": 0.5,
+        "seconds": 3.0081075499983854
+      },
+      "counts": {
+        "repairs": 6,
+        "probes": 21,
+        "total_probes": 36,
+        "categories": 11,
+        "invalid": 1
+      },
+      "peak_allocated_bytes": 3117267968,
+      "peak_reserved_bytes": 3156213760,
+      "by_category": {
+        "IndexError": {
+          "n": 1,
+          "repair": 0,
+          "checks": 0.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 0,
+          "seconds": 2.9948564000078477
+        },
+        "KeyError": {
+          "n": 1,
+          "repair": 0,
+          "checks": 0.3333333333333333,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 0,
+          "seconds": 3.420710299993516
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 0.6666666666666666,
+          "seconds": 2.6786927999928594
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 0,
+          "checks": 0.0,
+          "category": 0,
+          "invalid": 1,
+          "cause": 0,
+          "explanation": 0,
+          "seconds": 3.1807101000013063
+        },
+        "WrongResult": {
+          "n": 5,
+          "repair": 0.6,
+          "checks": 0.6666666666666666,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6,
+          "explanation": 0.6,
+          "seconds": 3.39083770000434
+        },
+        "ZeroDivisionError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 3.021358699988923
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.5,
+          "delta": -0.33333333333333337,
+          "relative": -0.4,
+          "paired_95": [
+            -0.5833333333333334,
+            -0.08333333333333326
+          ],
+          "base_wilson_95": [
+            0.5519691377470349,
+            0.9530348578161448
+          ],
+          "adapter_wilson_95": [
+            0.2537815976337112,
+            0.7462184023662888
+          ]
+        },
+        "checks": {
+          "base": 0.8888888888888888,
+          "adapter": 0.5833333333333334,
+          "delta": -0.30555555555555547,
+          "relative": -0.34374999999999994,
+          "paired_95": [
+            -0.5277777777777778,
+            -0.08333333333333337
+          ]
+        },
+        "category": {
+          "base": 0.5833333333333334,
+          "adapter": 0.9166666666666666,
+          "delta": 0.33333333333333326,
+          "relative": 0.5714285714285713,
+          "paired_95": [
+            0.0,
+            0.6666666666666667
+          ],
+          "base_wilson_95": [
+            0.3195113125495559,
+            0.8067396863412393
+          ],
+          "adapter_wilson_95": [
+            0.646120088858892,
+            0.9851349055950824
+          ]
+        },
+        "invalid": {
+          "base": 0,
+          "adapter": 0.08333333333333333,
+          "delta": 0.08333333333333333,
+          "relative": null,
+          "paired_95": [
+            0,
+            0.25
+          ],
+          "base_wilson_95": [
+            0,
+            0.24249400665523077
+          ],
+          "adapter_wilson_95": [
+            0.014865094404917678,
+            0.35387991114110795
+          ]
+        },
+        "cause": {
+          "base": 1.4166666666666667,
+          "adapter": 0.4166666666666667,
+          "delta": -1.0,
+          "relative": -0.7058823529411764,
+          "paired_95": [
+            -1.4166666666666667,
+            -0.5833333333333333
+          ]
+        },
+        "explanation": {
+          "base": 1.25,
+          "adapter": 0.5,
+          "delta": -0.75,
+          "relative": -0.6,
+          "paired_95": [
+            -1.3333333333333333,
+            -0.16666666666666663
+          ]
+        },
+        "seconds": {
+          "base": 7.59631640000589,
+          "adapter": 3.0081075499983854,
+          "delta": -4.588208850007504,
+          "relative": -0.6040044422062181,
+          "paired_95": [
+            -5.186141250000219,
+            -3.732393400001456
+          ]
+        }
+      }
+    },
+    "hybrid-display": {
+      "metrics": {
+        "repair": 0.8333333333333334,
+        "checks": 0.8888888888888888,
+        "category": 1,
+        "invalid": 0,
+        "cause": 1.4166666666666667,
+        "explanation": 1.25,
+        "seconds": 6.945178099995246
+      },
+      "counts": {
+        "repairs": 10,
+        "probes": 32,
+        "total_probes": 36,
+        "categories": 12,
+        "invalid": 0
+      },
+      "peak_allocated_bytes": 3121144832,
+      "peak_reserved_bytes": 3158310912,
+      "by_category": {
+        "IndexError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 7.7242165000061505
+        },
+        "KeyError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 8.052790999994613
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.3333333333333333,
+          "explanation": 0.6666666666666666,
+          "seconds": 7.264747299996088
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 9.274178400009987
+        },
+        "WrongResult": {
+          "n": 5,
+          "repair": 0.8,
+          "checks": 0.8666666666666667,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.2,
+          "explanation": 1.2,
+          "seconds": 6.253823000006378
+        },
+        "ZeroDivisionError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 5.487559200002579
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.8333333333333334,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ],
+          "base_wilson_95": [
+            0.5519691377470349,
+            0.9530348578161448
+          ],
+          "adapter_wilson_95": [
+            0.5519691377470349,
+            0.9530348578161448
+          ]
+        },
+        "checks": {
+          "base": 0.8888888888888888,
+          "adapter": 0.8888888888888888,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "category": {
+          "base": 0.5833333333333334,
+          "adapter": 1,
+          "delta": 0.41666666666666663,
+          "relative": 0.7142857142857142,
+          "paired_95": [
+            0.16666666666666663,
+            0.6666666666666667
+          ],
+          "base_wilson_95": [
+            0.3195113125495559,
+            0.8067396863412393
+          ],
+          "adapter_wilson_95": [
+            0.7575059933447693,
+            1
+          ]
+        },
+        "invalid": {
+          "base": 0,
+          "adapter": 0,
+          "delta": 0,
+          "relative": null,
+          "paired_95": [
+            0,
+            0
+          ],
+          "base_wilson_95": [
+            0,
+            0.24249400665523077
+          ],
+          "adapter_wilson_95": [
+            0,
+            0.24249400665523077
+          ]
+        },
+        "cause": {
+          "base": 1.4166666666666667,
+          "adapter": 1.4166666666666667,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "explanation": {
+          "base": 1.25,
+          "adapter": 1.25,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "seconds": {
+          "base": 7.59631640000589,
+          "adapter": 6.945178099995246,
+          "delta": -0.6511383000106434,
+          "relative": -0.08571763809234414,
+          "paired_95": [
+            -1.6760750499961432,
+            0.7395305999962147
+          ]
+        }
+      }
+    },
+    "hybrid-conditioned": {
+      "metrics": {
+        "repair": 0.6666666666666666,
+        "checks": 0.75,
+        "category": 0.9166666666666666,
+        "invalid": 0.08333333333333333,
+        "cause": 0.9166666666666666,
+        "explanation": 0.6666666666666666,
+        "seconds": 5.741542000003392
+      },
+      "counts": {
+        "repairs": 8,
+        "probes": 27,
+        "total_probes": 36,
+        "categories": 11,
+        "invalid": 1
+      },
+      "peak_allocated_bytes": 3120994304,
+      "peak_reserved_bytes": 3156213760,
+      "by_category": {
+        "IndexError": {
+          "n": 1,
+          "repair": 0,
+          "checks": 0.0,
+          "category": 0,
+          "invalid": 1,
+          "cause": 0,
+          "explanation": 0,
+          "seconds": 8.507485699999961
+        },
+        "KeyError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 8.364387499997974
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6666666666666666,
+          "explanation": 0.6666666666666666,
+          "seconds": 5.026282200007699
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 0,
+          "checks": 0.3333333333333333,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 0,
+          "seconds": 6.8561971000017365
+        },
+        "WrongResult": {
+          "n": 5,
+          "repair": 0.8,
+          "checks": 0.8666666666666667,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6,
+          "explanation": 0.4,
+          "seconds": 5.728157800011104
+        },
+        "ZeroDivisionError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 5.389506300009089
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.6666666666666666,
+          "delta": -0.16666666666666674,
+          "relative": -0.20000000000000007,
+          "paired_95": [
+            -0.41666666666666663,
+            0.0
+          ],
+          "base_wilson_95": [
+            0.5519691377470349,
+            0.9530348578161448
+          ],
+          "adapter_wilson_95": [
+            0.39062208887280625,
+            0.8618799089087836
+          ]
+        },
+        "checks": {
+          "base": 0.8888888888888888,
+          "adapter": 0.75,
+          "delta": -0.13888888888888884,
+          "relative": -0.15624999999999994,
+          "paired_95": [
+            -0.33333333333333326,
+            0.0
+          ]
+        },
+        "category": {
+          "base": 0.5833333333333334,
+          "adapter": 0.9166666666666666,
+          "delta": 0.33333333333333326,
+          "relative": 0.5714285714285713,
+          "paired_95": [
+            0.0,
+            0.6666666666666667
+          ],
+          "base_wilson_95": [
+            0.3195113125495559,
+            0.8067396863412393
+          ],
+          "adapter_wilson_95": [
+            0.646120088858892,
+            0.9851349055950824
+          ]
+        },
+        "invalid": {
+          "base": 0,
+          "adapter": 0.08333333333333333,
+          "delta": 0.08333333333333333,
+          "relative": null,
+          "paired_95": [
+            0,
+            0.25
+          ],
+          "base_wilson_95": [
+            0,
+            0.24249400665523077
+          ],
+          "adapter_wilson_95": [
+            0.014865094404917678,
+            0.35387991114110795
+          ]
+        },
+        "cause": {
+          "base": 1.4166666666666667,
+          "adapter": 0.9166666666666666,
+          "delta": -0.5000000000000001,
+          "relative": -0.3529411764705883,
+          "paired_95": [
+            -0.9166666666666667,
+            -0.08333333333333348
+          ]
+        },
+        "explanation": {
+          "base": 1.25,
+          "adapter": 0.6666666666666666,
+          "delta": -0.5833333333333334,
+          "relative": -0.4666666666666667,
+          "paired_95": [
+            -1.0833333333333333,
+            -0.16666666666666674
+          ]
+        },
+        "seconds": {
+          "base": 7.59631640000589,
+          "adapter": 5.741542000003392,
+          "delta": -1.8547744000024977,
+          "relative": -0.24416760734203485,
+          "paired_95": [
+            -2.5104911000089487,
+            -0.9837214500075788
+          ]
+        }
+      }
+    },
+    "routing": [
+      {
+        "id": "rolling-total",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "pair-columns",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          true,
+          false
+        ],
+        "conditioned_probes": [
+          false,
+          true,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "queue-head",
+        "gold": "IndexError",
+        "classifier": "IndexError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": null,
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": false,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "bucket-owners",
+        "gold": "KeyError",
+        "classifier": "KeyError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "KeyError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "text-parts",
+        "gold": "ValueError",
+        "classifier": "ValueError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "ValueError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": false,
+        "display_pass": true,
+        "conditioned_pass": false,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          true,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "ordered-scores",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "half-open-span",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "rolling-mean",
+        "gold": "ZeroDivisionError",
+        "classifier": "ZeroDivisionError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "ZeroDivisionError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "table-alias",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "consume-stream",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          true,
+          false
+        ],
+        "conditioned_probes": [
+          false,
+          true,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "field-number",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "predicate-call",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      }
+    ],
+    "classifier_stage": {
+      "correct": 12,
+      "valid": 12,
+      "programs": 12
+    }
+  },
+  "independent": {
+    "base": {
+      "metrics": {
+        "repair": 0.8333333333333334,
+        "checks": 0.8767123287671232,
+        "category": 0.375,
+        "invalid": 0.041666666666666664,
+        "cause": 0.9583333333333334,
+        "explanation": 1.1666666666666667,
+        "seconds": 6.766055449996202
+      },
+      "counts": {
+        "repairs": 20,
+        "probes": 64,
+        "total_probes": 73,
+        "categories": 9,
+        "invalid": 1
+      },
+      "peak_allocated_bytes": 3119444480,
+      "peak_reserved_bytes": 3156213760,
+      "by_category": {
+        "AttributeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.6666666666666667,
+          "explanation": 2,
+          "seconds": 6.08726879999449
+        },
+        "IndexError": {
+          "n": 2,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 0.5,
+          "invalid": 0,
+          "cause": 1.5,
+          "explanation": 2,
+          "seconds": 6.931253449991345
+        },
+        "KeyError": {
+          "n": 2,
+          "repair": 0.5,
+          "checks": 0.5,
+          "category": 0.5,
+          "invalid": 0.5,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 9.950606899990817
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6666666666666666,
+          "explanation": 1.3333333333333333,
+          "seconds": 5.17695169999206
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 2,
+          "seconds": 6.8114118999947095
+        },
+        "WrongResult": {
+          "n": 13,
+          "repair": 0.7692307692307693,
+          "checks": 0.85,
+          "category": 0,
+          "invalid": 0,
+          "cause": 0.7692307692307693,
+          "explanation": 0.7692307692307693,
+          "seconds": 6.974723000006634
+        }
+      }
+    },
+    "adapter": {
+      "metrics": {
+        "repair": 0.6666666666666666,
+        "checks": 0.7671232876712328,
+        "category": 0.9166666666666666,
+        "invalid": 0.08333333333333333,
+        "cause": 0.5,
+        "explanation": 0.5416666666666666,
+        "seconds": 4.818781599999056
+      },
+      "counts": {
+        "repairs": 16,
+        "probes": 56,
+        "total_probes": 73,
+        "categories": 22,
+        "invalid": 2
+      },
+      "peak_allocated_bytes": 3121678848,
+      "peak_reserved_bytes": 3156213760,
+      "by_category": {
+        "AttributeError": {
+          "n": 3,
+          "repair": 0.6666666666666666,
+          "checks": 0.6666666666666666,
+          "category": 0.6666666666666666,
+          "invalid": 0.3333333333333333,
+          "cause": 1.3333333333333333,
+          "explanation": 1,
+          "seconds": 5.01677539999946
+        },
+        "IndexError": {
+          "n": 2,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 1,
+          "seconds": 6.569341099995654
+        },
+        "KeyError": {
+          "n": 2,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 0.5,
+          "seconds": 5.422123649994319
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.3333333333333333,
+          "explanation": 0.6666666666666666,
+          "seconds": 3.951781399999163
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 1,
+          "seconds": 4.380984899995383
+        },
+        "WrongResult": {
+          "n": 13,
+          "repair": 0.46153846153846156,
+          "checks": 0.65,
+          "category": 0.9230769230769231,
+          "invalid": 0.07692307692307693,
+          "cause": 0.23076923076923078,
+          "explanation": 0.3076923076923077,
+          "seconds": 4.761211899996852
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.6666666666666666,
+          "delta": -0.16666666666666674,
+          "relative": -0.20000000000000007,
+          "paired_95": [
+            -0.4166666666666667,
+            0.08333333333333337
+          ],
+          "base_wilson_95": [
+            0.6414692935030154,
+            0.9332132367136688
+          ],
+          "adapter_wilson_95": [
+            0.4670631683813228,
+            0.8202780967270192
+          ]
+        },
+        "checks": {
+          "base": 0.8767123287671232,
+          "adapter": 0.7671232876712328,
+          "delta": -0.1095890410958904,
+          "relative": -0.125,
+          "paired_95": [
+            -0.3013698630136986,
+            0.08333333333333326
+          ]
+        },
+        "category": {
+          "base": 0.375,
+          "adapter": 0.9166666666666666,
+          "delta": 0.5416666666666666,
+          "relative": 1.4444444444444444,
+          "paired_95": [
+            0.29166666666666674,
+            0.75
+          ],
+          "base_wilson_95": [
+            0.21159367559549125,
+            0.5729003755732521
+          ],
+          "adapter_wilson_95": [
+            0.7415119780678993,
+            0.976841184702956
+          ]
+        },
+        "invalid": {
+          "base": 0.041666666666666664,
+          "adapter": 0.08333333333333333,
+          "delta": 0.041666666666666664,
+          "relative": 1.0,
+          "paired_95": [
+            -0.08333333333333334,
+            0.16666666666666669
+          ],
+          "base_wilson_95": [
+            0.00739345616550606,
+            0.2024180647865531
+          ],
+          "adapter_wilson_95": [
+            0.02315881529704407,
+            0.2584880219321007
+          ]
+        },
+        "cause": {
+          "base": 0.9583333333333334,
+          "adapter": 0.5,
+          "delta": -0.45833333333333337,
+          "relative": -0.4782608695652174,
+          "paired_95": [
+            -0.8333333333333333,
+            -0.08333333333333326
+          ]
+        },
+        "explanation": {
+          "base": 1.1666666666666667,
+          "adapter": 0.5416666666666666,
+          "delta": -0.6250000000000001,
+          "relative": -0.5357142857142858,
+          "paired_95": [
+            -1.0,
+            -0.25
+          ]
+        },
+        "seconds": {
+          "base": 6.766055449996202,
+          "adapter": 4.818781599999056,
+          "delta": -1.9472738499971456,
+          "relative": -0.2878004569114548,
+          "paired_95": [
+            -2.266417350008851,
+            -1.0977055499970447
+          ]
+        }
+      }
+    },
+    "hybrid-display": {
+      "metrics": {
+        "repair": 0.8333333333333334,
+        "checks": 0.8767123287671232,
+        "category": 0.9583333333333334,
+        "invalid": 0.041666666666666664,
+        "cause": 0.9583333333333334,
+        "explanation": 1.1666666666666667,
+        "seconds": 9.3557229500002
+      },
+      "counts": {
+        "repairs": 20,
+        "probes": 64,
+        "total_probes": 73,
+        "categories": 23,
+        "invalid": 1
+      },
+      "peak_allocated_bytes": 3123802624,
+      "peak_reserved_bytes": 3158310912,
+      "by_category": {
+        "AttributeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.6666666666666667,
+          "explanation": 2,
+          "seconds": 8.621804499998689
+        },
+        "IndexError": {
+          "n": 2,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.5,
+          "explanation": 2,
+          "seconds": 9.034963499994774
+        },
+        "KeyError": {
+          "n": 2,
+          "repair": 0.5,
+          "checks": 0.5,
+          "category": 0.5,
+          "invalid": 0.5,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 9.828795399997034
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6666666666666666,
+          "explanation": 1.3333333333333333,
+          "seconds": 7.533357699998305
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 2,
+          "seconds": 9.218113599999924
+        },
+        "WrongResult": {
+          "n": 13,
+          "repair": 0.7692307692307693,
+          "checks": 0.85,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.7692307692307693,
+          "explanation": 0.7692307692307693,
+          "seconds": 9.560223599997698
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.8333333333333334,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ],
+          "base_wilson_95": [
+            0.6414692935030154,
+            0.9332132367136688
+          ],
+          "adapter_wilson_95": [
+            0.6414692935030154,
+            0.9332132367136688
+          ]
+        },
+        "checks": {
+          "base": 0.8767123287671232,
+          "adapter": 0.8767123287671232,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "category": {
+          "base": 0.375,
+          "adapter": 0.9583333333333334,
+          "delta": 0.5833333333333334,
+          "relative": 1.5555555555555556,
+          "paired_95": [
+            0.375,
+            0.7916666666666666
+          ],
+          "base_wilson_95": [
+            0.21159367559549125,
+            0.5729003755732521
+          ],
+          "adapter_wilson_95": [
+            0.7975819352134471,
+            0.9926065438344941
+          ]
+        },
+        "invalid": {
+          "base": 0.041666666666666664,
+          "adapter": 0.041666666666666664,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0
+          ],
+          "base_wilson_95": [
+            0.00739345616550606,
+            0.2024180647865531
+          ],
+          "adapter_wilson_95": [
+            0.00739345616550606,
+            0.2024180647865531
+          ]
+        },
+        "cause": {
+          "base": 0.9583333333333334,
+          "adapter": 0.9583333333333334,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "explanation": {
+          "base": 1.1666666666666667,
+          "adapter": 1.1666666666666667,
+          "delta": 0.0,
+          "relative": 0.0,
+          "paired_95": [
+            0.0,
+            0.0
+          ]
+        },
+        "seconds": {
+          "base": 6.766055449996202,
+          "adapter": 9.3557229500002,
+          "delta": 2.5896675000039977,
+          "relative": 0.3827440551060591,
+          "paired_95": [
+            1.2961652499943739,
+            3.419912049997947
+          ]
+        }
+      }
+    },
+    "hybrid-conditioned": {
+      "metrics": {
+        "repair": 0.7083333333333334,
+        "checks": 0.7671232876712328,
+        "category": 0.875,
+        "invalid": 0.125,
+        "cause": 0.9166666666666666,
+        "explanation": 0.9166666666666666,
+        "seconds": 6.5190672499957145
+      },
+      "counts": {
+        "repairs": 17,
+        "probes": 56,
+        "total_probes": 73,
+        "categories": 21,
+        "invalid": 3
+      },
+      "peak_allocated_bytes": 3125672960,
+      "peak_reserved_bytes": 3158310912,
+      "by_category": {
+        "AttributeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.6666666666666667,
+          "explanation": 1.3333333333333333,
+          "seconds": 5.277803699995275
+        },
+        "IndexError": {
+          "n": 2,
+          "repair": 0.5,
+          "checks": 0.5,
+          "category": 0.5,
+          "invalid": 0.5,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 10.051661449993844
+        },
+        "KeyError": {
+          "n": 2,
+          "repair": 0.5,
+          "checks": 0.5,
+          "category": 0.5,
+          "invalid": 0.5,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 8.086514549999265
+        },
+        "TypeError": {
+          "n": 3,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.3333333333333333,
+          "explanation": 1,
+          "seconds": 4.75857000000542
+        },
+        "ValueError": {
+          "n": 1,
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 2,
+          "seconds": 8.089361199992709
+        },
+        "WrongResult": {
+          "n": 13,
+          "repair": 0.6153846153846154,
+          "checks": 0.725,
+          "category": 0.9230769230769231,
+          "invalid": 0.07692307692307693,
+          "cause": 0.6153846153846154,
+          "explanation": 0.6923076923076923,
+          "seconds": 6.46442649999517
+        }
+      },
+      "paired_vs_base": {
+        "repair": {
+          "base": 0.8333333333333334,
+          "adapter": 0.7083333333333334,
+          "delta": -0.125,
+          "relative": -0.15,
+          "paired_95": [
+            -0.25,
+            0.0
+          ],
+          "base_wilson_95": [
+            0.6414692935030154,
+            0.9332132367136688
+          ],
+          "adapter_wilson_95": [
+            0.5083230633550392,
+            0.8508535180303886
+          ]
+        },
+        "checks": {
+          "base": 0.8767123287671232,
+          "adapter": 0.7671232876712328,
+          "delta": -0.1095890410958904,
+          "relative": -0.125,
+          "paired_95": [
+            -0.21621621621621623,
+            -0.0273972602739726
+          ]
+        },
+        "category": {
+          "base": 0.375,
+          "adapter": 0.875,
+          "delta": 0.5,
+          "relative": 1.3333333333333333,
+          "paired_95": [
+            0.25,
+            0.75
+          ],
+          "base_wilson_95": [
+            0.21159367559549125,
+            0.5729003755732521
+          ],
+          "adapter_wilson_95": [
+            0.6899611872950053,
+            0.9565566591987644
+          ]
+        },
+        "invalid": {
+          "base": 0.041666666666666664,
+          "adapter": 0.125,
+          "delta": 0.08333333333333334,
+          "relative": 2.0000000000000004,
+          "paired_95": [
+            0.0,
+            0.20833333333333334
+          ],
+          "base_wilson_95": [
+            0.00739345616550606,
+            0.2024180647865531
+          ],
+          "adapter_wilson_95": [
+            0.043443340801235575,
+            0.31003881270499467
+          ]
+        },
+        "cause": {
+          "base": 0.9583333333333334,
+          "adapter": 0.9166666666666666,
+          "delta": -0.04166666666666674,
+          "relative": -0.04347826086956529,
+          "paired_95": [
+            -0.3750000000000001,
+            0.33333333333333337
+          ]
+        },
+        "explanation": {
+          "base": 1.1666666666666667,
+          "adapter": 0.9166666666666666,
+          "delta": -0.2500000000000001,
+          "relative": -0.21428571428571436,
+          "paired_95": [
+            -0.5416666666666667,
+            0.04166666666666652
+          ]
+        },
+        "seconds": {
+          "base": 6.766055449996202,
+          "adapter": 6.5190672499957145,
+          "delta": -0.24698820000048727,
+          "relative": -0.036504016531615315,
+          "paired_95": [
+            -1.0625136500020744,
+            0.5112018500003614
+          ]
+        }
+      }
+    },
+    "routing": [
+      {
+        "id": "seat-code",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "WrongResult",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": false,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "invoice-label",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "optional-alias",
+        "gold": "KeyError",
+        "classifier": "KeyError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": null,
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          false,
+          false
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "suffix-check",
+        "gold": "AttributeError",
+        "classifier": "AttributeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "AttributeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": false,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "last-neighbor",
+        "gold": "IndexError",
+        "classifier": "IndexError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "IndexError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "parse-rate",
+        "gold": "ValueError",
+        "classifier": "ValueError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "ValueError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "call-notes",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "WrongResult",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "range-band",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "comments",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "SyntaxError",
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          true,
+          false
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "nested-config",
+        "gold": "KeyError",
+        "classifier": "KeyError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "KeyError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "trim-extension",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "parallel-lists",
+        "gold": "IndexError",
+        "classifier": "IndexError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": null,
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": false,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "set-growth",
+        "gold": "AttributeError",
+        "classifier": "AttributeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "AttributeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "sign-column",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": false,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          true,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "row-decode",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "veto-finally",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "width-padding",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": null,
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          false,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "index-or-zero",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": false,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          false
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "step-chunks",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": false,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": false,
+        "conditioned_pass": false,
+        "display_probes": [
+          false,
+          false,
+          true
+        ],
+        "conditioned_probes": [
+          false,
+          false,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "call-count",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "WrongResult",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "pair-swap",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "suffix-mass",
+        "gold": "TypeError",
+        "classifier": "TypeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "TypeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "metadata-items",
+        "gold": "AttributeError",
+        "classifier": "AttributeError",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "AttributeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": true,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      },
+      {
+        "id": "rfind-missing",
+        "gold": "WrongResult",
+        "classifier": "WrongResult",
+        "classifier_correct": true,
+        "conditioned": true,
+        "repairer_category": "RuntimeError",
+        "base_raw_unchanged": true,
+        "base_pass": true,
+        "adapter_pass": false,
+        "adapter_category_correct": true,
+        "display_pass": true,
+        "conditioned_pass": true,
+        "display_probes": [
+          true,
+          true,
+          true
+        ],
+        "conditioned_probes": [
+          true,
+          true,
+          true
+        ],
+        "display_fallback": null,
+        "conditioned_fallback": null
+      }
+    ],
+    "classifier_stage": {
+      "correct": 24,
+      "valid": 24,
+      "programs": 24
+    }
+  },
+  "wrong_hint_control": [
+    {
+      "id": "document-title",
+      "gold": "KeyError",
+      "wrong": "WrongResult",
+      "display": [
+        false,
+        true
+      ],
+      "correct_hint": [
+        false,
+        true
+      ],
+      "wrong_hint": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "mbpp-577",
+      "gold": "WrongResult",
+      "wrong": "IndexError",
+      "display": [
+        true,
+        true,
+        true
+      ],
+      "correct_hint": [
+        true,
+        false,
+        true
+      ],
+      "wrong_hint": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "mbpp-92",
+      "gold": "WrongResult",
+      "wrong": "IndexError",
+      "display": [
+        true,
+        true,
+        true
+      ],
+      "correct_hint": [
+        true,
+        true,
+        true
+      ],
+      "wrong_hint": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "id": "mbpp-120",
+      "gold": "WrongResult",
+      "wrong": "IndexError",
+      "display": [
+        true,
+        true,
+        true
+      ],
+      "correct_hint": [
+        true,
+        true,
+        true
+      ],
+      "wrong_hint": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": "mbpp-415",
+      "gold": "WrongResult",
+      "wrong": "IndexError",
+      "display": [
+        true,
+        false,
+        true
+      ],
+      "correct_hint": [
+        true,
+        false,
+        true
+      ],
+      "wrong_hint": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": "mbpp-138",
+      "gold": "WrongResult",
+      "wrong": "IndexError",
+      "display": [
+        false,
+        false,
+        false
+      ],
+      "correct_hint": [
+        false,
+        true,
+        false
+      ],
+      "wrong_hint": [
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "whole_card": {
+    "base": {
+      "samples": 294,
+      "mean_whole_card_util_pct": 36.734693877551024,
+      "peak_whole_card_used_mib": 8142
+    },
+    "adapter": {
+      "samples": 178,
+      "mean_whole_card_util_pct": 38.443820224719104,
+      "peak_whole_card_used_mib": 8012
+    },
+    "hybrid-display": {
+      "samples": 337,
+      "mean_whole_card_util_pct": 36.24925816023739,
+      "peak_whole_card_used_mib": 8015
+    },
+    "hybrid-conditioned": {
+      "samples": 264,
+      "mean_whole_card_util_pct": 42.18560606060606,
+      "peak_whole_card_used_mib": 7243
+    }
+  }
+}
