@@ -10,7 +10,7 @@ I wanted an instruction-tuned code model with enough Python ability to benchmark
 
 The model suggests explanations and candidate repairs for short Python functions and observed failures. The interface is designed for developer review. In 12 held-out cases, two proposed fixes left their original bug intact. Other outputs repaired a function while giving inaccurate explanations of mutability, sort behavior or string truthiness. Each case has only three behavioral inputs. The dataset does not measure reliability across large repositories or unfamiliar packages. The model can follow misleading text embedded in a submission.
 
-The current default is the original model. A local one-update CPU LoRA checkpoint exists for integration verification. It targets query and value projections with rank 8. The checkpoint contains 1,089,536 trainable parameters and occupies 4,372,840 bytes in safetensors form. I verified its digest, reloaded it and observed a numerical effect on one validation example. I have not selected it as a release model. Main-run adapters, downstream superiority and cloud training costs remain unmeasured.
+The current default is the original model. I have local one-update CPU and CUDA LoRA checkpoints for integration verification. It targets query and value projections with rank 8. The CPU checkpoint contains 1,089,536 trainable parameters and occupies 4,372,840 bytes in safetensors form. I verified its digest, reloaded it and observed a numerical effect on one validation example. I have not selected it as a release model. Main-run adapters, downstream superiority and cloud training costs remain unmeasured.
 
 ## Model and data rights
 

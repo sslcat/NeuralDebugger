@@ -20,4 +20,3 @@ I kept the automatic scoring unchanged. This separate AI-assisted reading evalua
 I judged 7 of 12 root-cause descriptions fully correct and the semantic explanation scores summed to 14/24. The automatic root-cause proxy also scored 7/12, but the case-level decisions differ. The automatic explanation score was 19/24. This discrepancy matters when deciding whether a trained adapter improves programming explanations.
 
 All five wrong-result fixtures explicitly required the category WrongResult. The model labeled all five AssertionError, which follows the displayed failed assertion but misses the specified taxonomy. It correctly categorized all seven exception fixtures. Two returned programs passed only their empty-input check. The other ten passed all three checks.
-

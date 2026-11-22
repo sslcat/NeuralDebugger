@@ -1,6 +1,6 @@
 # Paid GPU preflight · blocked
 
-I have completed the local baseline and a one-update full-model LoRA pipeline check. I have created zero NeuralDebugger Runpod resources. Project-attributable Runpod spending from these actions is $0. An authenticated provider billing statement is unavailable. The local release has no GitHub remote.
+I have completed the local baseline and one-update full-model LoRA pipeline checks on CPU and GPU. I have created zero NeuralDebugger Runpod resources. Project-attributable Runpod spending from these actions is $0. An authenticated provider billing statement is unavailable. The local release has no GitHub remote.
 
 ## Candidate and cost model
 
@@ -20,7 +20,7 @@ The time estimate includes idle provisioning, environment setup, download and re
 ## Evidence and open gates
 
 - Data integrity passed for 23 training, 4 validation and 12 held-out source programs. The immutable baseline repaired 10/12 functions and passed 32/36 checks. Automatic category and mechanism scores were both 7/12. [Baseline](../results/base-v1/summary.json)
-- Local adapter training, saving, tensor-file checksum verification, reloading, numerical effect and base fallback passed. The cloud configuration uses rank 8, alpha 16, query/value projections, AdamW, three epochs and a maximum of 18 updates. The local one-update smoke adapter is excluded from the product default.
+- Local adapter training, saving, tensor-file checksum verification, reloading, numerical effect and base fallback passed. The cloud configuration uses rank 8, alpha 16, query/value projections, AdamW, three epochs and a maximum of 18 updates. The full-model RTX 4070 SUPER smoke used 3.77 GiB peak PyTorch allocation and completed its update plus validation in 0.86 seconds. Both local smoke adapters are excluded from the product default.
 - Public pricing is available. No NeuralDebugger-authorized Runpod API key, authenticated CLI or connected Runpod MCP was available. A Windows credential target is scoped to a different project. I left it untouched.
 - I exercised deletion, timeout, stale progress, provider identity mismatch, ambiguous storage and read-back branches against local test doubles. Live shutdown permission, actual provider deletion, out-of-band alerts and account charges remain unverified. A mocked HTTP 204 or a public quote cannot satisfy this gate.
 - An estimated cost cutoff cannot enforce a provider lifetime spending cap. Controller-host outage, API failure, delayed accounting and an overlong cleanup interval can all increase charges. Before provisioning I need independently verified provider-side financial safeguards sufficient for the absolute cap, an authorized credential and an already-available, supervised independent controller host with tested alert delivery.

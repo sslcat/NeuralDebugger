@@ -2,7 +2,7 @@
 
 I built NeuralDebugger to test whether a small open-weight coding model can diagnose a Python failure, explain what went wrong, and produce a correction that passes behavioral checks. The workbench runs on a local FastAPI server. The same model loader and prompt power the benchmark.
 
-**Current result.** The original Qwen model fixed 10 of 12 held-out functions and passed 32 of 36 executable checks. It sometimes produced a working patch alongside a false explanation. I completed one local LoRA optimizer update and verified the recovered adapter. The main Runpod experiment is at the paid preflight gate. The workbench defaults to the original model. [All case reports](results/base-v1/cases.md) · [Qualitative review](results/base-v1/review.md) · [Paid preflight](docs/preflight.md)
+**Current result.** The original Qwen model fixed 10 of 12 held-out functions and passed 32 of 36 executable checks. It sometimes produced a working patch alongside a false explanation. I completed separate one-update LoRA smoke runs on CPU and GPU and verified both saved adapters. The main Runpod experiment is at the paid preflight gate. The workbench defaults to the original model. [All case reports](results/base-v1/cases.md) · [Qualitative review](results/base-v1/review.md) · [Paid preflight](docs/preflight.md)
 
 ![The local workbench showing the model's actual response to a clock conversion failure](docs/workbench.png)
 
@@ -49,7 +49,7 @@ I evaluated the original model before updating any adapter. I used a family-disj
 | Reference AST match | 5/12 |
 | Median warmed CPU inference | 21.69 s |
 
-I used a Ryzen 7 9800X3D for full-model inference and the local LoRA smoke because other applications were occupying most of the 4070 SUPER's VRAM. A low-memory CUDA projection test exercised real Qwen weights and LoRA gradients on that GPU. The CPU smoke trained 1,089,536 adapter parameters for one step, with a training loss of 1.2468 and one validation-example loss of 1.6242. These measurements establish that the training and checkpoint paths work. A main-run learning curve and a base-versus-trained result require the approved experiment. [Measured smoke log](results/local-smoke/metrics.jsonl) · [Model card](MODEL_CARD.md)
+I used a Ryzen 7 9800X3D for full-model inference and the local LoRA smoke because other applications were occupying most of the 4070 SUPER's VRAM. When GPU headroom became available, I also ran the full-model smoke on the RTX 4070 SUPER. It reached 3.77 GiB peak PyTorch allocation, with training loss 1.2568 and a one-example validation loss of 1.6283. The update plus validation took 0.86 seconds after loading. The CPU smoke trained 1,089,536 adapter parameters for one step, with a training loss of 1.2468 and one validation-example loss of 1.6242. These measurements establish that the training and checkpoint paths work. A main-run learning curve and a base-versus-trained result require the approved experiment. [CPU smoke log](results/local-smoke/metrics.jsonl) · [GPU smoke log](results/cuda-smoke/metrics.jsonl) · [Model card](MODEL_CARD.md)
 
 ## Reproduce the checks
 

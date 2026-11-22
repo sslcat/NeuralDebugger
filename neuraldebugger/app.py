@@ -28,13 +28,22 @@ class Worker:
         self.status = {"mode": "unloaded", "device": None, "warning": None}
 
     async def exchange(self, item):
+        if self.process is not None and self.process.returncode is not None:
+            await self.close()
         if self.process is None:
+            executable = sys.executable
+            env = os.environ.copy()
+            if os.name == "nt" and sys.prefix != sys.base_prefix:
+                # The venv redirector otherwise spawns a grandchild that survives kill().
+                executable = sys._base_executable
+                env["__PYVENV_LAUNCHER__"] = sys.executable
             self.process = await asyncio.create_subprocess_exec(
-                sys.executable,
+                executable,
                 "-u",
                 "-m",
                 "neuraldebugger.worker",
                 cwd=ROOT,
+                env=env,
                 stdin=asyncio.subprocess.PIPE,
                 stdout=asyncio.subprocess.PIPE,
             )

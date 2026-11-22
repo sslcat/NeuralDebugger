@@ -1,0 +1,2 @@
+{"phase": "smoke", "step": 1, "epoch": 1, "train_loss": 1.256821632385254, "elapsed_seconds": 0.7969999999913853, "peak_cuda_bytes": 4046214144}
+{"step": 1, "epoch": 1, "validation_loss": 1.6282775402069092, "elapsed_seconds": 0.8600000000005821, "peak_cuda_bytes": 4046214144}
