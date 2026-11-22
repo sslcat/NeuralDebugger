@@ -10,3 +10,11 @@ I score diagnostic prose with model identities masked and without patch results.
 
 The primary outcome is the change in the fraction of independent programs passing every probe. I report direction and uncertainty even when point estimates disagree across metrics. The legacy set, individual categories and semantic scores are secondary. No prompt tuning, decoding retries, or test-based epoch selection is part of this protocol.
 
+
+## Interpretation of the completed run
+
+I observed 3 newly repaired and 7 newly broken independent programs. The adapter repaired the optional-alias lookup, comment-prefix extraction and final partial chunk. It lost working repairs for the seat offset, suffix-method call, default history list, interval guard, filename extension, sign mapping and missing-marker slice. Both arms failed width-padding. The full case report includes successes, shared failures and regressions.
+
+The independent classification gain was concentrated in WrongResult (0/13 to 12/13). That target accounts for 89/118 training examples. Several adapter answers suggested a familiar arithmetic or comparison edit unrelated to the bug, including multiplication for a row-unpacking error. I suspect the class balance and repeated mutation phrasing encouraged those shortcuts. This run cannot isolate their causal effect. Training loss decreased, but held-out patch and prose scores also decreased. I retained the base model for the workbench.
+
+The matched decoding settings allow latency comparison for these outputs. Other software used this workstation, and the whole-card utilization samples include that load. Timing does not establish a hardware-independent throughput increase. The paired percentile intervals describe resampling these programs. The masked reviewer could sometimes infer the arm from its writing style. The scores show rubric agreement with one reviewer; inter-rater reliability remains unmeasured. [Complete comparisons](../results/v2/comparison.md) · [Individual responses](../results/v2/case-reports.md)

@@ -1,0 +1,9 @@
+{
+  "bytes": {
+    "epoch-1": 4372840,
+    "epoch-2": 4372840,
+    "epoch-3": 4372840
+  },
+  "selected": "epoch-3",
+  "sha256": "96ac4f90bbf04f6c9e0d9ab67a99cac5fcb5d575f854866fc7c3ea57ff9ce92e"
+}

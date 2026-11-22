@@ -1,0 +1,20 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "manifest": "73d3d6994503fd3cbc2ba9d6725f37ac40b6dfc35b0ca7f3ca49dd11bb0ddc2b",
+  "seed": 20261122,
+  "device": "NVIDIA GeForce RTX 4070 SUPER",
+  "files": {
+    "configs/protocol.json": "e20683f454385aa399d48e1ea9358483098d23dc77621f9abc6a800b5af1fb75",
+    "configs/lora.json": "23eb245a5d9d2d54633528300df58600e54fee247f11ce8d08bca5ccdfdf9083",
+    "neuraldebugger/model.py": "f36ed0946006cd82b2798edd19769255f5c53d3f6ab001bc4a85dc7945fdd0e0",
+    "neuraldebugger/schema.py": "0a602cd9914dc8b481dc96b24e161d0dfe226ac60f61f38e4c0d8edb476c8954",
+    "neuraldebugger/sandbox.py": "a31ae126d25701d7415caa4f7e9e6e971584fb2ce6af0cd4bcfa5f49829c39f1",
+    "neuraldebugger/corpus.py": "1cbc6c682a66b9b7b3c0016e141b1759a7d5767177d89056fbbf5af4f04617e0",
+    "neuraldebugger/trial.py": "c7701bdbd178fa35a492b30a2cf73d67857e3362d8894b139a8130192f7052bc"
+  },
+  "mode": "adapter",
+  "dtype": "torch.bfloat16",
+  "torch": "2.8.0+cu128",
+  "adapter_sha256": "96ac4f90bbf04f6c9e0d9ab67a99cac5fcb5d575f854866fc7c3ea57ff9ce92e"
+}

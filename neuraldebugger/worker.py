@@ -2,6 +2,7 @@ import json
 import os
 import sys
 
+from .facts import checked_prose
 from .model import Engine
 from .schema import parse
 
@@ -25,7 +26,8 @@ def main():
         item = json.loads(line)
         try:
             answer = parse(engine.predict(item["code"], item["traceback"]))
-            emit({"diagnosis": answer.model_dump(), **status})
+            answer, source = checked_prose(item["code"], item["traceback"], answer)
+            emit({"diagnosis": answer.model_dump(), "prose_source": source, **status})
         except OverflowError as exc:
             emit({"error": str(exc), "status": 422})
         except ValueError:

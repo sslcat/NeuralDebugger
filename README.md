@@ -2,7 +2,7 @@
 
 I built NeuralDebugger to test whether a small open-weight coding model can diagnose a Python failure, explain what went wrong, and produce a correction that passes behavioral checks. The workbench runs on a local FastAPI server. The same model loader and prompt power the benchmark.
 
-**Current result.** The original Qwen model fixed 10 of 12 held-out functions and passed 32 of 36 executable checks. It sometimes produced a working patch alongside a false explanation. I completed separate one-update LoRA smoke runs on CPU and GPU and verified both saved adapters. The main Runpod experiment is at the paid preflight gate. The workbench defaults to the original model. [All case reports](results/base-v1/cases.md) · [Qualitative review](results/base-v1/review.md) · [Paid preflight](docs/preflight.md)
+**I kept the base model as the default.** On 24 newly authored evaluation programs, the local LoRA adapter classified 22 errors correctly and fully repaired 16 programs. The base model classified 9 correctly and repaired 20. The adapter also scored lower on causal explanations. All training and evaluation ran on my RTX 4070 SUPER. Runpod spending was $0. [Paired results](results/v2/comparison.md) · [Every case](results/v2/case-reports.md)
 
 ![The local workbench showing the model's actual response to a clock conversion failure](docs/workbench.png)
 
@@ -36,20 +36,25 @@ The API exposes `GET /api/status` and `POST /api/analyze`. For example, send `{"
 
 ## What I measured
 
-I evaluated the original model before updating any adapter. I used a family-disjoint 23/4/12 split and kept the held-out file out of the training payload. The 39 functions contain 36 original cases and three attributed MBPP adaptations. The benchmark executes patches in isolated WebAssembly instances; it includes invalid and incorrect responses in its denominators.
+I verified 176 debugging cases against 513 behavioral probes. I used 118 programs for training, 22 for validation, and 24 separately authored programs for the primary evaluation. I kept the original 12 evaluation programs byte-for-byte intact. Both models received the same prompts, decoding settings, and execution limits. I graded root causes and repair explanations from a shuffled packet that hid the model names and patch results. This was one AI-assisted review.
 
-| Base-model measure | Result |
-|---|---:|
-| All behavioral checks passed | 10/12 (83.3%) |
-| Individual checks passed | 32/36 (88.9%) |
-| Exact error category | 7/12 (58.3%) |
-| Root-cause lexical proxy | 7/12 (58.3%) |
-| Automatic explanation rubric | 1.58/2 |
-| Invalid/unusable responses | 0/12 |
-| Reference AST match | 5/12 |
-| Median warmed CPU inference | 21.69 s |
+| Independent evaluation | Base | LoRA |
+|---|---:|---:|
+| Programs passing every probe | 20/24 | 16/24 |
+| Behavioral probes passed | 64/73 | 56/73 |
+| Correct error category | 9/24 | 22/24 |
+| Root cause, mean out of 2 | 0.96 | 0.50 |
+| Explanation, mean out of 2 | 1.17 | 0.54 |
+| Invalid outputs | 1/24 | 2/24 |
+| Median warmed GPU latency | 3.82 s | 3.07 s |
 
-I used a Ryzen 7 9800X3D for full-model inference and the local LoRA smoke because other applications were occupying most of the 4070 SUPER's VRAM. When GPU headroom became available, I also ran the full-model smoke on the RTX 4070 SUPER. It reached 3.77 GiB peak PyTorch allocation, with training loss 1.2568 and a one-example validation loss of 1.6283. The update plus validation took 0.86 seconds after loading. The CPU smoke trained 1,089,536 adapter parameters for one step, with a training loss of 1.2468 and one validation-example loss of 1.6242. These measurements establish that the training and checkpoint paths work. A main-run learning curve and a base-versus-trained result require the approved experiment. [CPU smoke log](results/local-smoke/metrics.jsonl) · [GPU smoke log](results/cuda-smoke/metrics.jsonl) · [Model card](MODEL_CARD.md)
+The adapter gained three complete repairs and lost seven on the independent suite. Its repair rate fell 16.7 percentage points, with a paired 95% bootstrap interval from −41.7 to +8.3 points. Classification improved by 54.2 points, with an interval from +29.2 to +75.0. On the legacy suite full repairs fell from 10/12 to 6/12. The independent suite is small, so the observed repair difference does not establish the size or direction of the effect on future programs. [Per-category breakdown and uncertainty](results/v2/summary.json)
+
+I trained 1,089,536 LoRA parameters for 90 updates in 47.58 seconds including startup and saving. Validation loss fell from 0.682 to 0.394 to 0.290. I selected epoch 3 on validation loss, then evaluated it once on each holdout. The training process peaked at 5.10 GiB of PyTorch allocation. The whole GPU averaged 60.4% utilization during the recorded training stage. Each epoch's adapter weights occupy 4,372,840 bytes. [Hardware telemetry](results/v2/hardware.json) · [Checkpoint manifest](results/v2/checkpoints.json)
+
+![Measured training and validation cross-entropy over 90 updates](results/v2/loss.png)
+
+The raw base response to the legacy truthiness example claimed an empty string was truthy. The function actually tested a bound method. The workbench now shows a labeled Python semantics check for this specific, statically evidenced case. The benchmark continues to score the raw model output. [Regression test](tests/test_facts.py) · [Original CPU baseline](results/base-v1/summary.json)
 
 ## Reproduce the checks
 
@@ -57,7 +62,7 @@ I used a Ryzen 7 9800X3D for full-model inference and the local LoRA smoke becau
 python tools/fetch_sandbox.py
 python -m neuraldebugger.data
 python -m pytest -q
-python -m neuraldebugger.evaluate --out results/base-reproduction
+python -m neuraldebugger.report finish
 ```
 
 I used AI coding assistance from OpenAI Codex to implement the application, write and check fixtures, run experiments, draft documentation and review model responses. The behavioral scores come from actual executions. Qualitative judgments are labeled as AI-assisted.

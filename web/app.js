@@ -72,6 +72,8 @@ el("form").onsubmit = async (event) => {
     const a = data.diagnosis;
     el("message").hidden = true;
     el("result").hidden = false;
+    el("prose-source").hidden = !data.prose_source;
+    el("prose-source").textContent = data.prose_source || "";
     el("cause").textContent = a.root_cause;
     el("reason").textContent = a.explanation;
     el("fixed").textContent = a.corrected_code;

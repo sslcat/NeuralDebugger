@@ -1,0 +1,35 @@
+{
+  "base": {
+    "samples": 154,
+    "wall_seconds": 153.46899999999732,
+    "whole_gpu_mean_util_pct": 56.33766233766234,
+    "whole_gpu_median_util_pct": 59.0,
+    "whole_gpu_max_used_mib": 9738
+  },
+  "train": {
+    "samples": 48,
+    "wall_seconds": 47.57799999999406,
+    "whole_gpu_mean_util_pct": 60.375,
+    "whole_gpu_median_util_pct": 68.0,
+    "whole_gpu_max_used_mib": 11412,
+    "steps": 90,
+    "peak_torch_allocated_bytes": 5470727168,
+    "epoch_validations": [
+      0.6815283393318002,
+      0.39449446445161646,
+      0.28985031660307536
+    ],
+    "mean_training_loss_by_epoch": [
+      0.9206860686341921,
+      0.5452196193238099,
+      0.3379402218696972
+    ]
+  },
+  "adapter": {
+    "samples": 115,
+    "wall_seconds": 115.0,
+    "whole_gpu_mean_util_pct": 49.31304347826087,
+    "whole_gpu_median_util_pct": 53,
+    "whole_gpu_max_used_mib": 6316
+  }
+}

@@ -1,0 +1,498 @@
+{
+  "test": {
+    "n": 12,
+    "metrics": {
+      "repair": {
+        "base": 0.8333333333333334,
+        "adapter": 0.5,
+        "delta": -0.33333333333333337,
+        "relative": -0.4,
+        "paired_95": [
+          -0.5833333333333334,
+          -0.08333333333333326
+        ],
+        "base_wilson_95": [
+          0.5519691377470349,
+          0.9530348578161448
+        ],
+        "adapter_wilson_95": [
+          0.2537815976337112,
+          0.7462184023662888
+        ]
+      },
+      "checks": {
+        "base": 0.8888888888888888,
+        "adapter": 0.5833333333333334,
+        "delta": -0.30555555555555547,
+        "relative": -0.34374999999999994,
+        "paired_95": [
+          -0.5277777777777778,
+          -0.08333333333333337
+        ]
+      },
+      "category": {
+        "base": 0.5833333333333334,
+        "adapter": 0.9166666666666666,
+        "delta": 0.33333333333333326,
+        "relative": 0.5714285714285713,
+        "paired_95": [
+          0.0,
+          0.6666666666666667
+        ],
+        "base_wilson_95": [
+          0.3195113125495559,
+          0.8067396863412393
+        ],
+        "adapter_wilson_95": [
+          0.646120088858892,
+          0.9851349055950824
+        ]
+      },
+      "invalid": {
+        "base": 0,
+        "adapter": 0.08333333333333333,
+        "delta": 0.08333333333333333,
+        "relative": null,
+        "paired_95": [
+          0,
+          0.25
+        ],
+        "base_wilson_95": [
+          0,
+          0.24249400665523077
+        ],
+        "adapter_wilson_95": [
+          0.014865094404917678,
+          0.35387991114110795
+        ]
+      },
+      "cause": {
+        "base": 1.4166666666666667,
+        "adapter": 0.4166666666666667,
+        "delta": -1.0,
+        "relative": -0.7058823529411764,
+        "paired_95": [
+          -1.4166666666666667,
+          -0.5833333333333333
+        ]
+      },
+      "explanation": {
+        "base": 1.25,
+        "adapter": 0.5,
+        "delta": -0.75,
+        "relative": -0.6,
+        "paired_95": [
+          -1.3333333333333333,
+          -0.16666666666666663
+        ]
+      },
+      "seconds": {
+        "base": 3.57050000000163,
+        "adapter": 2.2734999999956926,
+        "delta": -1.2970000000059372,
+        "relative": -0.3632544461574976,
+        "paired_95": [
+          -1.555000000000291,
+          -0.6880000000091968
+        ]
+      }
+    },
+    "by_category": {
+      "WrongResult": {
+        "n": 5,
+        "base": {
+          "repair": 0.8,
+          "checks": 0.8666666666666667,
+          "category": 0,
+          "invalid": 0,
+          "cause": 1.2,
+          "explanation": 1.2,
+          "seconds": 3.764999999999418
+        },
+        "adapter": {
+          "repair": 0.6,
+          "checks": 0.6666666666666666,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6,
+          "explanation": 0.6,
+          "seconds": 2.5160000000032596
+        }
+      },
+      "TypeError": {
+        "n": 3,
+        "base": {
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.3333333333333333,
+          "explanation": 0.6666666666666666,
+          "seconds": 2.9060000000026776
+        },
+        "adapter": {
+          "repair": 0.6666666666666666,
+          "checks": 0.7777777777777778,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 0.6666666666666666,
+          "seconds": 2.047000000005937
+        }
+      },
+      "IndexError": {
+        "n": 1,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 3.610000000000582
+        },
+        "adapter": {
+          "repair": 0,
+          "checks": 0.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 0,
+          "seconds": 2.3289999999979045
+        }
+      },
+      "KeyError": {
+        "n": 1,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 3.7030000000086147
+        },
+        "adapter": {
+          "repair": 0,
+          "checks": 0.3333333333333333,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 0,
+          "seconds": 2.6090000000112923
+        }
+      },
+      "ValueError": {
+        "n": 1,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 3.9060000000026776
+        },
+        "adapter": {
+          "repair": 0,
+          "checks": 0.0,
+          "category": 0,
+          "invalid": 1,
+          "cause": 0,
+          "explanation": 0,
+          "seconds": 2.702999999994063
+        }
+      },
+      "ZeroDivisionError": {
+        "n": 1,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 2,
+          "seconds": 3.047000000005937
+        },
+        "adapter": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 2.1719999999913853
+        }
+      }
+    },
+    "patch_failures": [
+      "pair-columns",
+      "queue-head",
+      "bucket-owners",
+      "text-parts",
+      "table-alias",
+      "consume-stream"
+    ],
+    "improved": [],
+    "regressed": [
+      "queue-head",
+      "bucket-owners",
+      "text-parts",
+      "table-alias"
+    ]
+  },
+  "independent": {
+    "n": 24,
+    "metrics": {
+      "repair": {
+        "base": 0.8333333333333334,
+        "adapter": 0.6666666666666666,
+        "delta": -0.16666666666666674,
+        "relative": -0.20000000000000007,
+        "paired_95": [
+          -0.4166666666666667,
+          0.08333333333333337
+        ],
+        "base_wilson_95": [
+          0.6414692935030154,
+          0.9332132367136688
+        ],
+        "adapter_wilson_95": [
+          0.4670631683813228,
+          0.8202780967270192
+        ]
+      },
+      "checks": {
+        "base": 0.8767123287671232,
+        "adapter": 0.7671232876712328,
+        "delta": -0.1095890410958904,
+        "relative": -0.125,
+        "paired_95": [
+          -0.3013698630136986,
+          0.08333333333333326
+        ]
+      },
+      "category": {
+        "base": 0.375,
+        "adapter": 0.9166666666666666,
+        "delta": 0.5416666666666666,
+        "relative": 1.4444444444444444,
+        "paired_95": [
+          0.29166666666666674,
+          0.75
+        ],
+        "base_wilson_95": [
+          0.21159367559549125,
+          0.5729003755732521
+        ],
+        "adapter_wilson_95": [
+          0.7415119780678993,
+          0.976841184702956
+        ]
+      },
+      "invalid": {
+        "base": 0.041666666666666664,
+        "adapter": 0.08333333333333333,
+        "delta": 0.041666666666666664,
+        "relative": 1.0,
+        "paired_95": [
+          -0.08333333333333334,
+          0.16666666666666669
+        ],
+        "base_wilson_95": [
+          0.00739345616550606,
+          0.2024180647865531
+        ],
+        "adapter_wilson_95": [
+          0.02315881529704407,
+          0.2584880219321007
+        ]
+      },
+      "cause": {
+        "base": 0.9583333333333334,
+        "adapter": 0.5,
+        "delta": -0.45833333333333337,
+        "relative": -0.4782608695652174,
+        "paired_95": [
+          -0.8333333333333333,
+          -0.08333333333333326
+        ]
+      },
+      "explanation": {
+        "base": 1.1666666666666667,
+        "adapter": 0.5416666666666666,
+        "delta": -0.6250000000000001,
+        "relative": -0.5357142857142858,
+        "paired_95": [
+          -1.0,
+          -0.25
+        ]
+      },
+      "seconds": {
+        "base": 3.819999999999709,
+        "adapter": 3.070499999994354,
+        "delta": -0.7495000000053551,
+        "relative": -0.1962041884830922,
+        "paired_95": [
+          -1.069999999999709,
+          -0.32799999998678686
+        ]
+      }
+    },
+    "by_category": {
+      "WrongResult": {
+        "n": 13,
+        "base": {
+          "repair": 0.7692307692307693,
+          "checks": 0.85,
+          "category": 0,
+          "invalid": 0,
+          "cause": 0.7692307692307693,
+          "explanation": 0.7692307692307693,
+          "seconds": 3.937999999994645
+        },
+        "adapter": {
+          "repair": 0.46153846153846156,
+          "checks": 0.65,
+          "category": 0.9230769230769231,
+          "invalid": 0.07692307692307693,
+          "cause": 0.23076923076923078,
+          "explanation": 0.3076923076923077,
+          "seconds": 3.312000000005355
+        }
+      },
+      "TypeError": {
+        "n": 3,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.6666666666666666,
+          "explanation": 1.3333333333333333,
+          "seconds": 3.110000000000582
+        },
+        "adapter": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0.3333333333333333,
+          "explanation": 0.6666666666666666,
+          "seconds": 2.75
+        }
+      },
+      "KeyError": {
+        "n": 2,
+        "base": {
+          "repair": 0.5,
+          "checks": 0.5,
+          "category": 0.5,
+          "invalid": 0.5,
+          "cause": 1,
+          "explanation": 1,
+          "seconds": 4.421500000004016
+        },
+        "adapter": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 2,
+          "explanation": 0.5,
+          "seconds": 2.930000000007567
+        }
+      },
+      "AttributeError": {
+        "n": 3,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1.6666666666666667,
+          "explanation": 2,
+          "seconds": 3.2660000000032596
+        },
+        "adapter": {
+          "repair": 0.6666666666666666,
+          "checks": 0.6666666666666666,
+          "category": 0.6666666666666666,
+          "invalid": 0.3333333333333333,
+          "cause": 1.3333333333333333,
+          "explanation": 1,
+          "seconds": 2.625
+        }
+      },
+      "IndexError": {
+        "n": 2,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 0.5,
+          "invalid": 0,
+          "cause": 1.5,
+          "explanation": 2,
+          "seconds": 4.351499999997031
+        },
+        "adapter": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 1,
+          "seconds": 3.6639999999970314
+        }
+      },
+      "ValueError": {
+        "n": 1,
+        "base": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 1,
+          "explanation": 2,
+          "seconds": 3.577999999994063
+        },
+        "adapter": {
+          "repair": 1,
+          "checks": 1.0,
+          "category": 1,
+          "invalid": 0,
+          "cause": 0,
+          "explanation": 1,
+          "seconds": 3.3280000000086147
+        }
+      }
+    },
+    "patch_failures": [
+      "seat-code",
+      "optional-alias",
+      "suffix-check",
+      "call-notes",
+      "range-band",
+      "comments",
+      "trim-extension",
+      "sign-column",
+      "width-padding",
+      "step-chunks",
+      "rfind-missing"
+    ],
+    "improved": [
+      "optional-alias",
+      "comments",
+      "step-chunks"
+    ],
+    "regressed": [
+      "seat-code",
+      "suffix-check",
+      "call-notes",
+      "range-band",
+      "trim-extension",
+      "sign-column",
+      "rfind-missing"
+    ]
+  }
+}

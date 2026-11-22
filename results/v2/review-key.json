@@ -1,0 +1,146 @@
+{
+  "rolling-total": [
+    "base",
+    "adapter"
+  ],
+  "pair-columns": [
+    "adapter",
+    "base"
+  ],
+  "queue-head": [
+    "base",
+    "adapter"
+  ],
+  "bucket-owners": [
+    "base",
+    "adapter"
+  ],
+  "text-parts": [
+    "base",
+    "adapter"
+  ],
+  "ordered-scores": [
+    "base",
+    "adapter"
+  ],
+  "half-open-span": [
+    "base",
+    "adapter"
+  ],
+  "rolling-mean": [
+    "base",
+    "adapter"
+  ],
+  "table-alias": [
+    "base",
+    "adapter"
+  ],
+  "consume-stream": [
+    "base",
+    "adapter"
+  ],
+  "field-number": [
+    "base",
+    "adapter"
+  ],
+  "predicate-call": [
+    "base",
+    "adapter"
+  ],
+  "seat-code": [
+    "base",
+    "adapter"
+  ],
+  "invoice-label": [
+    "adapter",
+    "base"
+  ],
+  "optional-alias": [
+    "base",
+    "adapter"
+  ],
+  "suffix-check": [
+    "adapter",
+    "base"
+  ],
+  "last-neighbor": [
+    "base",
+    "adapter"
+  ],
+  "parse-rate": [
+    "base",
+    "adapter"
+  ],
+  "call-notes": [
+    "adapter",
+    "base"
+  ],
+  "range-band": [
+    "adapter",
+    "base"
+  ],
+  "comments": [
+    "base",
+    "adapter"
+  ],
+  "nested-config": [
+    "adapter",
+    "base"
+  ],
+  "trim-extension": [
+    "base",
+    "adapter"
+  ],
+  "parallel-lists": [
+    "base",
+    "adapter"
+  ],
+  "set-growth": [
+    "base",
+    "adapter"
+  ],
+  "sign-column": [
+    "base",
+    "adapter"
+  ],
+  "row-decode": [
+    "adapter",
+    "base"
+  ],
+  "veto-finally": [
+    "base",
+    "adapter"
+  ],
+  "width-padding": [
+    "base",
+    "adapter"
+  ],
+  "index-or-zero": [
+    "adapter",
+    "base"
+  ],
+  "step-chunks": [
+    "base",
+    "adapter"
+  ],
+  "call-count": [
+    "base",
+    "adapter"
+  ],
+  "pair-swap": [
+    "base",
+    "adapter"
+  ],
+  "suffix-mass": [
+    "base",
+    "adapter"
+  ],
+  "metadata-items": [
+    "adapter",
+    "base"
+  ],
+  "rfind-missing": [
+    "adapter",
+    "base"
+  ]
+}

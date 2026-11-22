@@ -1,19 +1,24 @@
 # Dataset card
 
-I built a 39-function Python debugging pilot. I wrote 36 original reference programs and normalized three short MBPP solutions. For each I specified a deterministic replacement, a mechanism description, a repair explanation, alternative root-cause terms, and concrete inputs with expected outputs. The compiler executes only these reviewed repository fixtures. It requires the reference to pass every check and the mutation to fail at least one. The first failure supplies the observed input and exception or expected/actual output. There are 91 checks across the dataset.
+I froze a 176-program corpus for the local v2 trial. Each record carries a reproducible failure, a reference repair, a causal explanation, and a source identifier. I verified every reference on its full probe set and required every deliberately broken program to fail at least one probe. Programs supplied by the upstream corpus, reference code, and generated patches for v2 run in the restricted WASI interpreter.
 
-| Split | Independent programs | Purpose |
-|---|---:|---|
-| Train | 23 | Assistant-token supervision |
-| Validation | 4 | Warm-up and epoch selection |
-| Test | 12 | Frozen evaluation on 36 inputs |
+| Partition | Programs | Behavioral probes | Original | Adapted MBPP |
+|---|---:|---:|---:|---:|
+| Training | 118 | 337 | 25 | 93 |
+| Validation | 22 | 67 | 4 | 18 |
+| Independent evaluation | 24 | 73 | 24 | 0 |
+| Legacy evaluation | 12 | 36 | 12 | 0 |
 
-I assign whole programs to splits before generating cases. I compare identifier-normalized reference syntax representations across splits and reject similarity at or above 0.965 using SequenceMatcher. One training candidate was removed during this check. Distinct programs can still share underlying error concepts. I have no way to audit overlap with Qwen's pretraining corpus.
+I retained the legacy file byte-for-byte at SHA-256 `0933538b9be3df1368de629dd5b1a960c867f33388563ac35ece5f4a97ae3627`. I wrote the independent evaluation directly from new source programs and behavioral contracts, before examining predictions. It includes state persisting across calls, an exception handler overridden by finally, absent dictionary keys, bound-method and collection API mistakes, exclusive stops, and incorrect results with no Python exception. The harness supplies the failed input and expected/actual values for silent errors. Repeated-call probes evaluate the calls within one guest instance to expose mutable defaults. Each other probe starts with a fresh guest.
 
-The task covers wrong results and seven Python exception classes across the three splits. Every held-out program is original. Most inputs are short built-in types. This corpus has little coverage of multi-file applications, async behavior, or library-specific stack traces. Its size supports a low-cost feasibility experiment and limits generalization claims.
+## Source and selection
 
-## Provenance
+I wrote the original fixtures for NeuralDebugger. For training and validation I also adapted 111 tasks from the sanitized Mostly Basic Python Problems corpus by Jacob Austin et al., Google Research. The source field contains the upstream task ID. Three adaptations originated in the pilot. For the new public examples I retained upstream contracts and executable comparisons, normalized the reference syntax, changed an operation, and generated a diagnosis identifying the changed expression. I verified the correction and observed the mutation failing. My original contributions use MIT. The MBPP adaptations retain CC BY 4.0 attribution. [Upstream snapshot](https://github.com/google-research/google-research/blob/f82046ba5aabbbb427dbfd38a254d26bff08b533/mbpp/sanitized-mbpp.json) · [Dataset license declaration](https://huggingface.co/datasets/google-research-datasets/mbpp) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-I adapted MBPP tasks 8 (squares), 12 (sorting matrix rows), and 14 (triangular-prism volume) from the sanitized release by Austin et al., Google Research. I changed formatting and supplied new mutations, tests and explanatory fields. These three records retain CC BY 4.0 attribution. The other 36 cases and my original dataset contributions use MIT. Each record carries its source and group. [Pinned MBPP source](https://github.com/google-research/google-research/blob/f82046ba5aabbbb427dbfd38a254d26bff08b533/mbpp/sanitized-mbpp.json) · [Dataset license](https://huggingface.co/datasets/google-research-datasets/mbpp) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+I seeded the public task order, capped repeated transformations, screened for simple literal oracles, and retained at most one mutation per upstream task ID. I removed docstrings, normalized identifiers and constants, and compared structural token sequences from repaired and buggy programs. The cross-split threshold is a SequenceMatcher ratio of 0.91. I also reviewed algorithm families such as maximum products, rotations, power-of-two computations and subarrays. A family represented in validation stays out of training. I excluded a public swap task close in purpose to an evaluation case, one overlength example, and a near-duplicate original lookup. The manifest lists exclusions; transformation counts there describe candidates before final exclusions. Pairwise checks cover all six split pairs. [Split manifest](v2/manifest.json) · [Generator](../neuraldebugger/corpus.py)
 
-Rebuild with Python 3.12 using `python -m neuraldebugger.data`. The manifest records the exact byte hash and row count of each output. The compiler source includes all authored fixtures for auditing. For a training pod, transfer only the compiled train and validation JSONL, their manifest, configuration and training modules. Leave the test JSONL and source specification with the evaluator.
+I cannot establish zero pretraining overlap with public MBPP. Structural similarity cannot prove semantic independence, and three or four examples of behavior cannot specify every edge case of a program. Public mutations favor incorrect arithmetic and comparisons. Class-level results on the original evaluation programs have small denominators. I report those counts explicitly.
+
+## Rebuild
+
+Use Python 3.12, install the pinned project and benchmark packages, and fetch the WASI binary. Save the linked upstream JSON locally, then run `python -m neuraldebugger.corpus PATH_TO_SANITIZED_JSON`. The builder verifies source SHA-256 `ca95deaa9a01ef0a6f439f88bcf0dd3db3563d22f22aad6cae04ebb9a8d8c8e9`. It needs the pinned tokenizer for the sequence-length check. The training and validation JSONL are separate from both evaluation inputs. The older 39-case pilot remains available through `python -m neuraldebugger.data` and its original manifest.

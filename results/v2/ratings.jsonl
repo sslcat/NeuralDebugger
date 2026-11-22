@@ -1,0 +1,36 @@
+{"id":"rolling-total","A":[0,0],"B":[0,1],"note":"Both misdescribe =+. B names the correct edit but reverses what the original assignment does."}
+{"id":"pair-columns","A":[0,0],"B":[1,0],"note":"B identifies mixed operand types but converting to strings loses the numeric row-sum contract. A invents multiplication."}
+{"id":"queue-head","A":[1,1],"B":[1,0],"note":"Both identify the invalid access. A explains an empty check but reverses the original guard in its description. Pop still fails on an empty list."}
+{"id":"bucket-owners","A":[2,2],"B":[0,0],"note":"A locates the missing dictionary entry and guards it. B incorrectly blames a missing character."}
+{"id":"text-parts","A":[2,2],"B":[0,0],"note":"A connects excess split pieces to maxsplit. B has no usable structured prose."}
+{"id":"ordered-scores","A":[1,0],"B":[0,1],"note":"A recognizes None but gives it a false dependency on key and falsely describes sorted on empty input. B incorrectly treats None as a failure signal, although sorted is a useful replacement."}
+{"id":"half-open-span","A":[2,2],"B":[2,2],"note":"Both correctly identify the exclusive stop and explain adding one."}
+{"id":"rolling-mean","A":[2,2],"B":[1,1],"note":"A links the zero denominator to the empty case. B identifies zero length and offers a working denominator bound without explaining the specified empty result."}
+{"id":"table-alias","A":[2,2],"B":[1,0],"note":"A identifies repeated references to the same row. B gestures at sharing but multiplying by one produces only one row."}
+{"id":"consume-stream","A":[2,1],"B":[0,0],"note":"A identifies exhaustion; iterating the original list twice works for reusable inputs, but iter() cannot rewind an iterator. B invents an averaging operation."}
+{"id":"field-number","A":[2,2],"B":[0,1],"note":"A describes the string/integer mismatch and the conversion. B says two strings are added and offers a useful cast with no rationale."}
+{"id":"predicate-call","A":[0,1],"B":[0,0],"note":"A falsely calls the empty string truthy. Its explicit comparison after invoking strip is workable, but it misses the uncalled method. B's lstrip suggestion misses the mechanism."}
+{"id":"seat-code","A":[0,1],"B":[0,0],"note":"A describes ord without identifying the zero-based origin; it proposes adding one but attributes that to the Unicode result type. B is unparseable."}
+{"id":"invoice-label","A":[0,1],"B":[0,2],"note":"Neither cause matches the given integer input. A names a useful cast. B's rationale correctly explains casting the integer before concatenation."}
+{"id":"optional-alias","A":[0,0],"B":[2,0],"note":"B identifies the absent-key lookup; membership checking does not include missing keys as its rationale claims."}
+{"id":"suffix-check","A":[0,0],"B":[2,2],"note":"B distinguishes the lower method object from its string return value and explains the call sequence."}
+{"id":"last-neighbor","A":[1,2],"B":[0,1],"note":"A invents an existing guard but accurately explains the final lookahead and its bound. B suggests a bound without correctly diagnosing it."}
+{"id":"parse-rate","A":[1,2],"B":[0,1],"note":"A identifies conversion failure and explains catching ValueError. B invents an unbound name but names the right replacement handler."}
+{"id":"call-notes","A":[0,0],"B":[1,2],"note":"B notices mutation but omits definition-time allocation in the cause. Its sentinel explanation correctly allocates a new list on omitted calls. Insertion order is irrelevant."}
+{"id":"range-band","A":[0,0],"B":[1,0],"note":"A would exclude the valid low endpoint. B points to the actual expression and an unwanted accepted endpoint but reverses comparisons and misses why disjunction admits out-of-range values."}
+{"id":"comments","A":[1,0],"B":[0,1],"note":"A describes partition's tuple but rejects the required prefix and proposes stripping whitespace. B gives a workable split expression but misstates partition and calls selection joining."}
+{"id":"nested-config","A":[2,1],"B":[2,2],"note":"Both identify the unguarded outer key. A offers the defaulting expression without explaining why it works. B connects the empty mapping default to safe second-level lookup."}
+{"id":"trim-extension","A":[1,2],"B":[0,0],"note":"A notices the first-dot head but misdescribes the tail and absent-dot behavior. Its rightmost partition rationale addresses multiple dots. B changes the variable name."}
+{"id":"parallel-lists","A":[2,2],"B":[0,1],"note":"A explains why the shorter input determines the bound. B reverses the error direction but proposes the correct minimum."}
+{"id":"set-growth","A":[2,2],"B":[2,2],"note":"Both distinguish set insertion from list append and recommend add."}
+{"id":"sign-column","A":[0,0],"B":[0,0],"note":"A ignores zero and incorrectly claims XOR can produce the intended negative sign. B changes a comparison without addressing the addition."}
+{"id":"row-decode","A":[1,0],"B":[1,0],"note":"Both gesture at a bytes/text mismatch without identifying the text separator used on bytes. Both misdescribe which type decode accepts or returns."}
+{"id":"veto-finally","A":[1,0],"B":[1,1],"note":"A notices finally but invents an existing except block and proposes moving continue into try. B locates the overridden return and names a suitable handler but omits the overriding continue mechanism."}
+{"id":"width-padding","A":[0,0],"B":[0,0],"note":"Neither identifies the reversed subtraction. A describes the expected short-input condition; B proposes a different clamp and addition."}
+{"id":"index-or-zero","A":[0,0],"B":[0,1],"note":"A leaves the comparison unchanged. B describes enumerate rather than zero's false truth value but proposes the appropriate None check."}
+{"id":"step-chunks","A":[1,0],"B":[2,1],"note":"A notices the partial chunk but suggests padding it, contrary to the contract. B locates the restrictive stop and restores the length, with little explanation of the retained remainder."}
+{"id":"call-count","A":[1,1],"B":[0,0],"note":"A notices shared mutation but does not isolate the definition-time default or preserve the caller's explicit dictionary in its reasoning. B wrongly equates an empty dictionary with None."}
+{"id":"pair-swap","A":[2,1],"B":[0,1],"note":"A explains the overwritten value but its rationale does not explain simultaneous assignment. B's tuple hint is relevant, but its cause and repair instructions are incomplete."}
+{"id":"suffix-mass","A":[1,2],"B":[0,1],"note":"A describes the symptom, then correctly links sliced text to conversion before summing. B reverses the types in its cause but names the cast."}
+{"id":"metadata-items","A":[2,1],"B":[1,2],"note":"A locates the invalid values-view access and gives a terse replacement. B calls the view an iterator but explains how items supplies keys and values."}
+{"id":"rfind-missing","A":[0,0],"B":[1,2],"note":"A mischaracterizes rfind and proposes rindex, which raises on absence. B identifies the missing sentinel and explains guarding the missing marker, though its cause omits negative slice semantics."}

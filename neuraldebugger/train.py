@@ -55,9 +55,12 @@ def train(out, smoke=False, expanded=False):
     set_seed(C["seed"])
     rng = random.Random(C["seed"])
     engine = Engine()
-    from .corpus import V2, read_rows
+    directory = ROOT / "data"
+    read_split = load
+    if expanded:
+        from .corpus import V2, read_rows
 
-    directory = V2 if expanded else ROOT / "data"
+        directory, read_split = V2, read_rows
     manifest = json.loads((directory / "manifest.json").read_text())
     if expanded:
         manifest = manifest["splits"]
@@ -67,10 +70,7 @@ def train(out, smoke=False, expanded=False):
     for split in ("train", "validation"):
         if sha(directory / f"{split}.jsonl") != manifest[split]["sha256"]:
             raise ValueError(f"Changed split: {split}")
-        splits[split] = [
-            encode(engine.tok, r)
-            for r in (read_rows(split) if expanded else load(split))
-        ]
+        splits[split] = [encode(engine.tok, r) for r in read_split(split)]
     model = get_peft_model(
         engine.model,
         LoraConfig(

@@ -1,4 +1,8 @@
-# Evaluation protocol
+# Evaluation
+
+For the expanded local experiment I froze two evaluation sets, scored repairs with executable probes, and graded root cause and explanation separately under masked model identities. The case-level proxy described below belongs to the original pilot. [Local paired protocol](v2-protocol.md) · [Measured comparison](../results/v2/comparison.md)
+
+## Original pilot protocol
 
 I freeze the prompt, test bytes, decoding settings, parser and scorer before training. Each run loads the same model revision, warms up on the first validation case, then generates once per test case in file order. The model sees the buggy function and one observed failure. Additional checks, anchors, and references stay with the scorer. I use greedy decoding with one beam, a 1,536-token input budget, and a 384-token output cap. The adapter command fails if the requested adapter cannot load.
 

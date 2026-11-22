@@ -1,4 +1,6 @@
-# Paid GPU preflight · blocked
+# Historical paid GPU preflight · blocked
+
+I subsequently completed the expanded experiment on the local RTX 4070 SUPER. The November cloud quote below belongs to the earlier preflight. No Runpod resources were created. [Local experiment](../results/v2/comparison.md)
 
 I have completed the local baseline and one-update full-model LoRA pipeline checks on CPU and GPU. I have created zero NeuralDebugger Runpod resources. Project-attributable Runpod spending from these actions is $0. An authenticated provider billing statement is unavailable. The local release has no GitHub remote.
 

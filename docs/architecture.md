@@ -17,3 +17,5 @@ The application never executes submitted Python or proposed corrections. The bro
 I use JSONL for the offline corpora and experiment outputs so individual cases can be inspected without framework-specific tooling. Training reads the train and validation files. The offline benchmark owns the held-out file and capability-isolated patch interpreter. The Runpod watchdog has its own process, credentials and time budget. It runs outside the pod and outside the training process.
 
 I designed this service for a single local user. Bind to loopback. It has no multi-tenant authentication or public-service abuse controls.
+
+For a directly evidenced call that tests a bound string strip method, the worker supplies a labeled Python semantics check for the prose. It examines the AST and a literal-string failing call. The model still supplies the patch. The offline benchmark evaluates raw generations and bypasses this presentation rule.
