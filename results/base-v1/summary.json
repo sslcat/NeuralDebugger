@@ -1,0 +1,10 @@
+{
+  "category": 0.5833333333333334,
+  "root_cause": 0.5833333333333334,
+  "explanation": 1.5833333333333333,
+  "invalid": 0,
+  "reference_ast": 0.4166666666666667,
+  "fix_correctness": 0.8333333333333334,
+  "test_pass_rate": 0.8888888888888888,
+  "median_seconds": 21.687377950001974
+}

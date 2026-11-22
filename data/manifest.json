@@ -1,0 +1,14 @@
+{
+  "test": {
+    "rows": 12,
+    "sha256": "0933538b9be3df1368de629dd5b1a960c867f33388563ac35ece5f4a97ae3627"
+  },
+  "validation": {
+    "rows": 4,
+    "sha256": "ced4b91913b8efa516ae7d1dbaf0f9316cd9e468d384fc35ea7e742526e3e06a"
+  },
+  "train": {
+    "rows": 23,
+    "sha256": "c135650364cc56481a8e5049045b1801f6e0edc10bcb748dcd2a66b3e474dbc2"
+  }
+}

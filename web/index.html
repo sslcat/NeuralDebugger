@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10151d" />
+    <title>NeuralDebugger · Workbench</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true">⌁</span>NeuralDebugger
+        </div>
+        <span class="workspace">/ &nbsp; Workbench</span
+        ><span id="status" class="model">Connecting</span>
+      </div>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">PYTHON WORKBENCH</p>
+        <h1>Debug a failure<span>.</span></h1>
+        <p>Give the model the code and the failure you observed.</p>
+      </div>
+      <div class="layout">
+        <form id="form">
+          <section class="panel">
+            <div class="panelhead">
+              <h2>Source code</h2>
+              <label class="subtle" for="examples"
+                >Load example
+                <select id="examples">
+                  <option value="">Choose…</option>
+                  <option value="price">Price total</option>
+                  <option value="minute">Clock conversion</option>
+                </select></label
+              >
+            </div>
+            <div class="file"><span class="python">Py</span>snippet.py</div>
+            <label class="sr" for="code">Python source code</label
+            ><textarea
+              id="code"
+              required
+              maxlength="12000"
+              spellcheck="false"
+              placeholder="Paste your Python function here…"
+            ></textarea>
+          </section>
+          <section class="panel trace">
+            <div class="panelhead">
+              <h2>Observed failure</h2>
+              <span class="format">TRACEBACK / ASSERTION</span>
+            </div>
+            <label class="sr" for="trace">Error message or traceback</label
+            ><textarea
+              id="trace"
+              required
+              maxlength="6000"
+              spellcheck="false"
+              placeholder="Paste a traceback, or describe the expected and actual values…"
+            ></textarea>
+          </section>
+          <div class="actions">
+            <span class="hint">Ctrl / ⌘ + Enter</span
+            ><button class="primary" id="analyze" type="submit">
+              Analyze code <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </form>
+        <section class="panel diagnosis" aria-labelledby="diagnosis-head">
+          <div class="panelhead">
+            <h2 id="diagnosis-head">Diagnosis</h2>
+            <span id="category" class="format">OUTPUT</span>
+          </div>
+          <div id="message" role="status" aria-live="polite">
+            <div class="glyph" aria-hidden="true">⌁</div>
+            <h3>Awaiting analysis</h3>
+            <p>Your root cause and suggested correction will appear here.</p>
+          </div>
+          <div id="result" hidden>
+            <h3>Root cause</h3>
+            <p id="cause"></p>
+            <h3>Why the fix works</h3>
+            <p id="reason"></p>
+            <div class="codebar">
+              <h3>Suggested correction</h3>
+              <button id="copy" type="button">Copy code</button>
+            </div>
+            <pre><code id="fixed"></code></pre>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <span class="dot"></span> Local inference
+        <span class="sep">/</span> Submitted code is never executed
+        <span id="device"></span>
+      </footer>
+    </main>
+  </body>
+</html>

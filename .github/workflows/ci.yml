@@ -1,0 +1,16 @@
+name: Local checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install fastapi==0.116.1 pydantic==2.11.7 httpx==0.28.1 pytest==8.4.1 wasmtime==39.0.0
+      - run: python tools/fetch_sandbox.py
+      - run: python -m pytest -q
+      - run: node --check web/app.js

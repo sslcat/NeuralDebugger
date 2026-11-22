@@ -1,0 +1,140 @@
+{
+  "utc": "2026-11-22T15:59:13.026257+00:00",
+  "source": "https://api.runpod.io/graphql",
+  "query": "{ gpuTypes { id memoryInGb\n secure: lowestPrice(input:{gpuCount:1,secureCloud:true}) { stockStatus uninterruptablePrice }\n community: lowestPrice(input:{gpuCount:1,secureCloud:false}) { stockStatus uninterruptablePrice }\n} }",
+  "offers": [
+    {
+      "gpu": "NVIDIA A40",
+      "gb": 48,
+      "cloud": "secure",
+      "usd_per_hour": 0.59,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA L40",
+      "gb": 48,
+      "cloud": "community",
+      "usd_per_hour": 0.69,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX A6000",
+      "gb": 48,
+      "cloud": "secure",
+      "usd_per_hour": 0.69,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 1g.24gb",
+      "gb": 24,
+      "cloud": "secure",
+      "usd_per_hour": 0.69,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 4500 Blackwell",
+      "gb": 32,
+      "cloud": "secure",
+      "usd_per_hour": 0.72,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 4500 Blackwell Server Edition",
+      "gb": 32,
+      "cloud": "secure",
+      "usd_per_hour": 0.72,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA L40S",
+      "gb": 48,
+      "cloud": "community",
+      "usd_per_hour": 0.79,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "gb": 48,
+      "cloud": "secure",
+      "usd_per_hour": 1.09,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 2g.48gb",
+      "gb": 48,
+      "cloud": "secure",
+      "usd_per_hour": 1.39,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "gb": 80,
+      "cloud": "secure",
+      "usd_per_hour": 2.19,
+      "stock": "High"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+      "gb": 96,
+      "cloud": "secure",
+      "usd_per_hour": 2.69,
+      "stock": "Medium"
+    },
+    {
+      "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+      "gb": 96,
+      "cloud": "secure",
+      "usd_per_hour": 2.79,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA H100 NVL",
+      "gb": 94,
+      "cloud": "secure",
+      "usd_per_hour": 3.19,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA H200",
+      "gb": 141,
+      "cloud": "community",
+      "usd_per_hour": 3.59,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA H200 NVL",
+      "gb": 143,
+      "cloud": "secure",
+      "usd_per_hour": 3.79,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "gb": 80,
+      "cloud": "secure",
+      "usd_per_hour": 4.39,
+      "stock": "High"
+    },
+    {
+      "gpu": "NVIDIA H200",
+      "gb": 141,
+      "cloud": "secure",
+      "usd_per_hour": 5.29,
+      "stock": "Medium"
+    },
+    {
+      "gpu": "AMD Instinct MI350 OAM",
+      "gb": 294,
+      "cloud": "secure",
+      "usd_per_hour": 5.49,
+      "stock": "Low"
+    },
+    {
+      "gpu": "NVIDIA B200",
+      "gb": 180,
+      "cloud": "secure",
+      "usd_per_hour": 7.99,
+      "stock": "Low"
+    }
+  ]
+}

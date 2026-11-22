@@ -1,0 +1,18 @@
+{
+  "seed": 20261122,
+  "rank": 8,
+  "alpha": 16,
+  "dropout": 0.05,
+  "targets": [
+    "q_proj",
+    "v_proj"
+  ],
+  "optimizer": "AdamW",
+  "learning_rate": 0.00015,
+  "weight_decay": 0.01,
+  "epochs": 3,
+  "max_sequence_length": 768,
+  "batch_size": 1,
+  "gradient_accumulation": 4,
+  "max_grad_norm": 1
+}

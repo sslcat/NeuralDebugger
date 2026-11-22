@@ -1,0 +1,1754 @@
+[
+ {
+  "id": "rolling-total",
+  "split": "test",
+  "function": "running",
+  "reference": "def running(values):\n    out = []\n    total = 0\n    for value in values:\n        total += value\n        out.append(total)\n    return out",
+  "old": "total += value",
+  "bad": "total =+ value",
+  "cause": "Unary plus assigns each current value to total and discards the previous sum.",
+  "ex": "Use augmented assignment so every output includes all earlier values.",
+  "checks": [
+   [
+    [
+     [
+      2,
+      3,
+      -1
+     ]
+    ],
+    [
+     2,
+     5,
+     4
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ],
+   [
+    [
+     [
+      4,
+      0
+     ]
+    ],
+    [
+     4,
+     4
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "assign",
+    "reset",
+    "overwrit",
+    "replac"
+   ],
+   [
+    "accumul",
+    "sum",
+    "previous",
+    "running"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "pair-columns",
+  "split": "test",
+  "function": "columns",
+  "reference": "def columns(rows):\n    return [left + right for left, right in rows]",
+  "old": "left, right in rows",
+  "bad": "left, right in enumerate(rows)",
+  "cause": "Enumerate supplies an index and an entire pair, so addition mixes an integer and a list.",
+  "ex": "Unpack each row directly to add its two numeric columns.",
+  "checks": [
+   [
+    [
+     [
+      [
+       3,
+       5
+      ],
+      [
+       1,
+       2
+      ]
+     ]
+    ],
+    [
+     8,
+     3
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ],
+   [
+    [
+     [
+      [
+       0,
+       -2
+      ]
+     ]
+    ],
+    [
+     -2
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "enumerate",
+    "index"
+   ],
+   [
+    "row",
+    "pair",
+    "list",
+    "tuple"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "queue-head",
+  "split": "test",
+  "function": "next_job",
+  "reference": "def next_job(jobs):\n    if not jobs:\n        return None\n    return jobs[0]",
+  "old": "if not jobs",
+  "bad": "if jobs",
+  "cause": "The guard is reversed, allowing an empty list to reach the first-element lookup.",
+  "ex": "Return early for an empty queue and index the first item only when it exists.",
+  "checks": [
+   [
+    [
+     []
+    ],
+    null
+   ],
+   [
+    [
+     [
+      "sync"
+     ]
+    ],
+    "sync"
+   ],
+   [
+    [
+     [
+      "a",
+      "b"
+     ]
+    ],
+    "a"
+   ]
+  ],
+  "anchors": [
+   [
+    "empty",
+    "non-empty"
+   ],
+   [
+    "guard",
+    "condition",
+    "index",
+    "revers"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "bucket-owners",
+  "split": "test",
+  "function": "buckets",
+  "reference": "def buckets(labels):\n    groups = {}\n    for label in labels:\n        first = label[0]\n        groups.setdefault(first, []).append(label)\n    return groups",
+  "old": "groups.setdefault(first, []).append(label)",
+  "bad": "groups[first].append(label)",
+  "cause": "The dictionary has no list for the first occurrence of each initial.",
+  "ex": "Initialize a separate list per initial before appending its label.",
+  "checks": [
+   [
+    [
+     [
+      "ash",
+      "birch",
+      "ant"
+     ]
+    ],
+    {
+     "a": [
+      "ash",
+      "ant"
+     ],
+     "b": [
+      "birch"
+     ]
+    }
+   ],
+   [
+    [
+     []
+    ],
+    {}
+   ],
+   [
+    [
+     [
+      "bee"
+     ]
+    ],
+    {
+     "b": [
+      "bee"
+     ]
+    }
+   ]
+  ],
+  "anchors": [
+   [
+    "key",
+    "initial",
+    "first"
+   ],
+   [
+    "missing",
+    "exist",
+    "initializ",
+    "present",
+    "empty"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "text-parts",
+  "split": "test",
+  "function": "split_header",
+  "reference": "def split_header(line):\n    name, value = line.split(':', 1)\n    return [name.strip(), value.strip()]",
+  "old": "split(':', 1)",
+  "bad": "split(':')",
+  "cause": "An unrestricted split produces more than two pieces when the value contains a colon.",
+  "ex": "Limit the split to the first delimiter so the whole value stays together.",
+  "checks": [
+   [
+    [
+     "Time: 10:30"
+    ],
+    [
+     "Time",
+     "10:30"
+    ]
+   ],
+   [
+    [
+     "X: y"
+    ],
+    [
+     "X",
+     "y"
+    ]
+   ],
+   [
+    [
+     "Uri:a:b:c"
+    ],
+    [
+     "Uri",
+     "a:b:c"
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "split",
+    "separat"
+   ],
+   [
+    "colon",
+    "delimiter",
+    "two",
+    "multiple"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "ordered-scores",
+  "split": "test",
+  "function": "leader",
+  "reference": "def leader(scores):\n    ranked = sorted(scores, reverse=True)\n    return ranked[0]",
+  "old": "sorted(scores, reverse=True)",
+  "bad": "scores.sort(reverse=True)",
+  "cause": "The in-place list sort returns None, which cannot be indexed.",
+  "ex": "Use the list produced by sorted or index scores after sorting it.",
+  "checks": [
+   [
+    [
+     [
+      2,
+      9,
+      1
+     ]
+    ],
+    9
+   ],
+   [
+    [
+     [
+      -4,
+      -2
+     ]
+    ],
+    -2
+   ],
+   [
+    [
+     [
+      0
+     ]
+    ],
+    0
+   ]
+  ],
+  "anchors": [
+   [
+    "sort"
+   ],
+   [
+    "none",
+    "in.place"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "half-open-span",
+  "split": "test",
+  "function": "inclusive_days",
+  "reference": "def inclusive_days(start, end):\n    return list(range(start, end + 1))",
+  "old": "end + 1",
+  "bad": "end",
+  "cause": "Range excludes its stop so the requested final day is missing.",
+  "ex": "Increase the stop by one to include the upper bound.",
+  "checks": [
+   [
+    [
+     3,
+     5
+    ],
+    [
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    [
+     2,
+     2
+    ],
+    [
+     2
+    ]
+   ],
+   [
+    [
+     8,
+     6
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "range",
+    "stop",
+    "end"
+   ],
+   [
+    "exclus",
+    "inclus",
+    "off.by.one",
+    "last"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "rolling-mean",
+  "split": "test",
+  "function": "mean_or_zero",
+  "reference": "def mean_or_zero(values):\n    return sum(values) / len(values) if values else 0",
+  "old": " if values else 0",
+  "bad": "",
+  "cause": "An empty list has length zero, making the denominator zero.",
+  "ex": "Return the specified default for an empty input before dividing.",
+  "checks": [
+   [
+    [
+     []
+    ],
+    0
+   ],
+   [
+    [
+     [
+      2,
+      5
+     ]
+    ],
+    3.5
+   ],
+   [
+    [
+     [
+      0
+     ]
+    ],
+    0
+   ]
+  ],
+  "anchors": [
+   [
+    "empty",
+    "length",
+    "len"
+   ],
+   [
+    "zero",
+    "0"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "table-alias",
+  "split": "test",
+  "function": "mark_cell",
+  "reference": "def mark_cell(n, row, col):\n    grid = [[0] * n for _ in range(n)]\n    grid[row][col] = 1\n    return grid",
+  "old": "[[0] * n for _ in range(n)]",
+  "bad": "[[0] * n] * n",
+  "cause": "List repetition copies references to the same inner row, so one write changes every row.",
+  "ex": "Construct each row separately so its cells can change independently.",
+  "checks": [
+   [
+    [
+     2,
+     0,
+     1
+    ],
+    [
+     [
+      0,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   ],
+   [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     [
+      1
+     ]
+    ]
+   ],
+   [
+    [
+     2,
+     1,
+     0
+    ],
+    [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      0
+     ]
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "same",
+    "shar",
+    "alias",
+    "referenc"
+   ],
+   [
+    "row",
+    "inner",
+    "list"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "consume-stream",
+  "split": "test",
+  "function": "repeat_read",
+  "reference": "def repeat_read(items):\n    stream = list(items)\n    return [sum(stream), sum(stream)]",
+  "old": "list(items)",
+  "bad": "iter(items)",
+  "cause": "The first sum exhausts the iterator and the second receives no items.",
+  "ex": "Materialize the inputs once or reuse the first sum.",
+  "checks": [
+   [
+    [
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     3,
+     3
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   [
+    [
+     [
+      -1,
+      4
+     ]
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "iterat",
+    "stream"
+   ],
+   [
+    "exhaust",
+    "consum",
+    "once",
+    "empty"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "field-number",
+  "split": "test",
+  "function": "next_ticket",
+  "reference": "def next_ticket(record):\n    return int(record['number']) + 1",
+  "old": "int(record['number'])",
+  "bad": "record['number']",
+  "cause": "The ticket number is stored as text and cannot be added to an integer.",
+  "ex": "Convert the numeric string before incrementing it.",
+  "checks": [
+   [
+    [
+     {
+      "number": "009"
+     }
+    ],
+    10
+   ],
+   [
+    [
+     {
+      "number": "-1"
+     }
+    ],
+    0
+   ],
+   [
+    [
+     {
+      "number": "4"
+     }
+    ],
+    5
+   ]
+  ],
+  "anchors": [
+   [
+    "str",
+    "string",
+    "text"
+   ],
+   [
+    "int",
+    "number",
+    "add"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "predicate-call",
+  "split": "test",
+  "function": "nonblank",
+  "reference": "def nonblank(text):\n    return bool(text.strip())",
+  "old": "text.strip()",
+  "bad": "text.strip",
+  "cause": "The code tests a bound method object, which is truthy even for whitespace.",
+  "ex": "Call strip and test the returned string.",
+  "checks": [
+   [
+    [
+     "   "
+    ],
+    false
+   ],
+   [
+    [
+     " a "
+    ],
+    true
+   ],
+   [
+    [
+     ""
+    ],
+    false
+   ]
+  ],
+  "anchors": [
+   [
+    "method",
+    "function",
+    "strip"
+   ],
+   [
+    "call",
+    "parenthes",
+    "invok"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "document-title",
+  "split": "validation",
+  "function": "title",
+  "reference": "def title(doc):\n    return doc.get('title', 'Untitled')",
+  "old": "doc.get('title', 'Untitled')",
+  "bad": "doc['title']",
+  "cause": "Direct indexing requires the optional title key to exist.",
+  "ex": "Use a default when a document omits its title.",
+  "checks": [
+   [
+    [
+     {}
+    ],
+    "Untitled"
+   ],
+   [
+    [
+     {
+      "title": "Notes"
+     }
+    ],
+    "Notes"
+   ]
+  ],
+  "anchors": [
+   [
+    "key",
+    "title"
+   ],
+   [
+    "missing",
+    "absent",
+    "exist"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "evens",
+  "split": "validation",
+  "function": "even_items",
+  "reference": "def even_items(nums):\n    return [n for n in nums if n % 2 == 0]",
+  "old": "== 0",
+  "bad": "== 1",
+  "cause": "The remainder test selects odd numbers.",
+  "ex": "Compare the remainder with zero to keep even values.",
+  "checks": [
+   [
+    [
+     [
+      2,
+      3,
+      0
+     ]
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "odd",
+    "remainder"
+   ],
+   [
+    "even",
+    "zero"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "clip-space",
+  "split": "validation",
+  "function": "clean",
+  "reference": "def clean(lines):\n    return [line.rstrip() for line in lines]",
+  "old": "line.rstrip()",
+  "bad": "line.rstrip",
+  "cause": "The comprehension collects bound methods instead of cleaned text.",
+  "ex": "Invoke rstrip for each line.",
+  "checks": [
+   [
+    [
+     [
+      " a  ",
+      "b "
+     ]
+    ],
+    [
+     " a",
+     "b"
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "method",
+    "function"
+   ],
+   [
+    "call",
+    "parenthes"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "flatten-pages",
+  "split": "validation",
+  "function": "pages",
+  "reference": "def pages(groups):\n    result = []\n    for group in groups:\n        result.extend(group)\n    return result",
+  "old": "extend(group)",
+  "bad": "append(group)",
+  "cause": "Append inserts an entire group as one nested item.",
+  "ex": "Extend the output with the individual members of each group.",
+  "checks": [
+   [
+    [
+     [
+      [
+       1,
+       2
+      ],
+      [],
+      [
+       3
+      ]
+     ]
+    ],
+    [
+     1,
+     2,
+     3
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "append",
+    "nest"
+   ],
+   [
+    "group",
+    "list"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "hex-id",
+  "split": "train",
+  "function": "decode_id",
+  "reference": "def decode_id(text):\n    return int(text, 16)",
+  "old": "int(text, 16)",
+  "bad": "int(text)",
+  "cause": "The default decimal parser rejects hexadecimal letters.",
+  "ex": "Pass base 16 when parsing the identifier.",
+  "checks": [
+   [
+    [
+     "ff"
+    ],
+    255
+   ],
+   [
+    [
+     "10"
+    ],
+    16
+   ]
+  ],
+  "anchors": [
+   [
+    "decimal",
+    "base"
+   ],
+   [
+    "hex",
+    "16"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "triple",
+  "split": "train",
+  "function": "triple",
+  "reference": "def triple(items):\n    return [3 * x for x in items]",
+  "old": "3 * x",
+  "bad": "3 + x",
+  "cause": "Addition shifts each value instead of scaling it.",
+  "ex": "Multiply each element by three.",
+  "checks": [
+   [
+    [
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     0,
+     6
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "add",
+    "plus"
+   ],
+   [
+    "multipl",
+    "scal"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "last-file",
+  "split": "train",
+  "function": "last_file",
+  "reference": "def last_file(paths):\n    return paths[-1]",
+  "old": "[-1]",
+  "bad": "[len(paths)]",
+  "cause": "The length is one beyond the last valid list index.",
+  "ex": "Use negative indexing to select the final path.",
+  "checks": [
+   [
+    [
+     [
+      "a",
+      "b"
+     ]
+    ],
+    "b"
+   ],
+   [
+    [
+     [
+      "c"
+     ]
+    ],
+    "c"
+   ]
+  ],
+  "anchors": [
+   [
+    "length",
+    "len"
+   ],
+   [
+    "index",
+    "last"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "totals",
+  "split": "train",
+  "function": "total_prices",
+  "reference": "def total_prices(prices):\n    amount = 0\n    for price in prices:\n        amount += price\n    return amount",
+  "old": "amount = 0",
+  "bad": "amount = ''",
+  "cause": "The accumulator starts as text and cannot add a numeric price.",
+  "ex": "Start the sum at numeric zero.",
+  "checks": [
+   [
+    [
+     [
+      4,
+      5
+     ]
+    ],
+    9
+   ],
+   [
+    [
+     []
+    ],
+    0
+   ]
+  ],
+  "anchors": [
+   [
+    "str",
+    "text"
+   ],
+   [
+    "int",
+    "number",
+    "numeric"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "key-lookup",
+  "split": "train",
+  "function": "city",
+  "reference": "def city(entry):\n    return entry['city']",
+  "old": "'city'",
+  "bad": "'City'",
+  "cause": "Dictionary keys are case-sensitive, so City and city select different entries.",
+  "ex": "Use the lowercase field name from the record.",
+  "checks": [
+   [
+    [
+     {
+      "city": "Lima"
+     }
+    ],
+    "Lima"
+   ],
+   [
+    [
+     {
+      "city": "Oslo"
+     }
+    ],
+    "Oslo"
+   ]
+  ],
+  "anchors": [
+   [
+    "case",
+    "capital",
+    "lower"
+   ],
+   [
+    "key",
+    "city"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "join-words",
+  "split": "train",
+  "function": "csv_line",
+  "reference": "def csv_line(fields):\n    return ','.join(str(x) for x in fields)",
+  "old": "str(x) for x in fields",
+  "bad": "fields",
+  "cause": "Join requires strings but the fields can include numbers.",
+  "ex": "Convert each field to text before joining.",
+  "checks": [
+   [
+    [
+     [
+      1,
+      "x"
+     ]
+    ],
+    "1,x"
+   ],
+   [
+    [
+     []
+    ],
+    ""
+   ]
+  ],
+  "anchors": [
+   [
+    "join"
+   ],
+   [
+    "str",
+    "text"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "minutes",
+  "split": "train",
+  "function": "clock_parts",
+  "reference": "def clock_parts(minutes):\n    hours, rest = divmod(minutes, 60)\n    return [hours, rest]",
+  "old": "divmod(minutes, 60)",
+  "bad": "minutes // 60",
+  "cause": "Floor division returns one integer which cannot be unpacked into two values.",
+  "ex": "Use divmod to compute both the quotient and the remaining minutes.",
+  "checks": [
+   [
+    [
+     90
+    ],
+    [
+     1,
+     30
+    ]
+   ],
+   [
+    [
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ]
+  ],
+  "anchors": [
+   [
+    "int",
+    "single",
+    "one"
+   ],
+   [
+    "unpack",
+    "two"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "reverse-tokens",
+  "split": "train",
+  "function": "backwards",
+  "reference": "def backwards(words):\n    return words[::-1]",
+  "old": "[::-1]",
+  "bad": "[::1]",
+  "cause": "A positive slice step preserves the input order.",
+  "ex": "Use a negative step to traverse backwards.",
+  "checks": [
+   [
+    [
+     [
+      "x",
+      "y"
+     ]
+    ],
+    [
+     "y",
+     "x"
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "step",
+    "stride"
+   ],
+   [
+    "positive",
+    "forward",
+    "order"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "strip-tag",
+  "split": "train",
+  "function": "tag_name",
+  "reference": "def tag_name(tag):\n    return tag.removeprefix('tag:')",
+  "old": "removeprefix",
+  "bad": "strip",
+  "cause": "Strip treats its argument as a set of characters and can remove valid letters at either end.",
+  "ex": "Remove the exact prefix once.",
+  "checks": [
+   [
+    [
+     "tag:alpha"
+    ],
+    "alpha"
+   ],
+   [
+    [
+     "tag:ant"
+    ],
+    "ant"
+   ]
+  ],
+  "anchors": [
+   [
+    "strip",
+    "character"
+   ],
+   [
+    "prefix",
+    "end"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "common-members",
+  "split": "train",
+  "function": "shared",
+  "reference": "def shared(left, right):\n    return sorted(set(left) & set(right))",
+  "old": " & ",
+  "bad": " | ",
+  "cause": "Union keeps values from either input rather than only the shared members.",
+  "ex": "Intersect the sets before sorting.",
+  "checks": [
+   [
+    [
+     [
+      1,
+      2
+     ],
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     2
+    ]
+   ],
+   [
+    [
+     [],
+     [
+      3
+     ]
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "union",
+    "either"
+   ],
+   [
+    "intersect",
+    "common"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "invert",
+  "split": "train",
+  "function": "invert",
+  "reference": "def invert(mapping):\n    return {value: key for key, value in mapping.items()}",
+  "old": "mapping.items()",
+  "bad": "mapping",
+  "cause": "Iterating over a dictionary yields keys, so unpacking a longer key fails.",
+  "ex": "Iterate over items to obtain each key and value pair.",
+  "checks": [
+   [
+    [
+     {
+      "apple": "red"
+     }
+    ],
+    {
+     "red": "apple"
+    }
+   ],
+   [
+    [
+     {}
+    ],
+    {}
+   ]
+  ],
+  "anchors": [
+   [
+    "key",
+    "unpack"
+   ],
+   [
+    "item",
+    "dict"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "running-max",
+  "split": "train",
+  "function": "max_debt",
+  "reference": "def max_debt(values):\n    best = values[0]\n    for value in values[1:]:\n        best = max(best, value)\n    return best",
+  "old": "best = values[0]",
+  "bad": "best = 0",
+  "cause": "Zero is larger than every negative input and can become a result absent from the data.",
+  "ex": "Initialize from the first actual observation.",
+  "checks": [
+   [
+    [
+     [
+      -4,
+      -2
+     ]
+    ],
+    -2
+   ],
+   [
+    [
+     [
+      3
+     ]
+    ],
+    3
+   ]
+  ],
+  "anchors": [
+   [
+    "zero",
+    "0"
+   ],
+   [
+    "negative",
+    "initial"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "withdraw",
+  "split": "train",
+  "function": "withdraw",
+  "reference": "def withdraw(balance, amount):\n    if amount > balance:\n        return balance\n    return balance - amount",
+  "old": "> balance",
+  "bad": ">= balance",
+  "cause": "The guard rejects an exact-balance withdrawal.",
+  "ex": "Reject only amounts strictly greater than the balance.",
+  "checks": [
+   [
+    [
+     5,
+     5
+    ],
+    0
+   ],
+   [
+    [
+     5,
+     6
+    ],
+    5
+   ],
+   [
+    [
+     5,
+     2
+    ],
+    3
+   ]
+  ],
+  "anchors": [
+   [
+    "equal",
+    "exact"
+   ],
+   [
+    "guard",
+    "reject",
+    "greater"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "suffix",
+  "split": "train",
+  "function": "suffix",
+  "reference": "def suffix(path):\n    return path.rsplit('.', 1)[-1]",
+  "old": "[-1]",
+  "bad": "[1]",
+  "cause": "A path without a dot splits into just one component, making index one invalid.",
+  "ex": "Use the last component for both dotted and undotted paths.",
+  "checks": [
+   [
+    [
+     "README"
+    ],
+    "README"
+   ],
+   [
+    [
+     "a.b.py"
+    ],
+    "py"
+   ]
+  ],
+  "anchors": [
+   [
+    "index",
+    "one"
+   ],
+   [
+    "dot",
+    "component",
+    "split"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "coupon",
+  "split": "train",
+  "function": "discount",
+  "reference": "def discount(price, rate):\n    return price * (1 - rate)",
+  "old": "price * (1 - rate)",
+  "bad": "price * 1 - rate",
+  "cause": "Multiplication binds before subtraction and subtracts an unscaled rate from the price.",
+  "ex": "Group the discount factor before multiplying.",
+  "checks": [
+   [
+    [
+     40,
+     0.25
+    ],
+    30
+   ],
+   [
+    [
+     0,
+     0.5
+    ],
+    0
+   ]
+  ],
+  "anchors": [
+   [
+    "preced",
+    "before",
+    "parenthes"
+   ],
+   [
+    "rate",
+    "multipl",
+    "subtract"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "string-update",
+  "split": "train",
+  "function": "replace_head",
+  "reference": "def replace_head(text, first):\n    return first + text[1:]",
+  "old": "return first + text[1:]",
+  "bad": "text[0] = first\n    return text",
+  "cause": "Strings are immutable, so assigning a character by index fails.",
+  "ex": "Construct a new string from the replacement and remaining suffix.",
+  "checks": [
+   [
+    [
+     "cat",
+     "b"
+    ],
+    "bat"
+   ],
+   [
+    [
+     "a",
+     "z"
+    ],
+    "z"
+   ]
+  ],
+  "anchors": [
+   [
+    "str"
+   ],
+   [
+    "immut",
+    "assign"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "word-lengths",
+  "split": "train",
+  "function": "sizes",
+  "reference": "def sizes(words):\n    return list(map(len, words))",
+  "old": "map(len, words)",
+  "bad": "map(len(), words)",
+  "cause": "Calling len with no argument fails before map begins.",
+  "ex": "Pass the callable itself so map can supply each word.",
+  "checks": [
+   [
+    [
+     [
+      "red",
+      ""
+     ]
+    ],
+    [
+     3,
+     0
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "len"
+   ],
+   [
+    "argument",
+    "call"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "unbound",
+  "split": "train",
+  "function": "first_large",
+  "reference": "def first_large(values):\n    answer = None\n    for item in values:\n        if item > 10:\n            answer = item\n            break\n    return answer",
+  "old": "answer = None\n    ",
+  "bad": "",
+  "cause": "When no item qualifies the assignment never runs and the return reads an unbound local.",
+  "ex": "Initialize the default result before searching.",
+  "checks": [
+   [
+    [
+     [
+      1,
+      2
+     ]
+    ],
+    null
+   ],
+   [
+    [
+     [
+      11,
+      17
+     ]
+    ],
+    11
+   ]
+  ],
+  "anchors": [
+   [
+    "assign",
+    "initial",
+    "unbound"
+   ],
+   [
+    "condition",
+    "no",
+    "qualif"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "truth-count",
+  "split": "train",
+  "function": "count_enabled",
+  "reference": "def count_enabled(flags):\n    return sum(flag is True for flag in flags)",
+  "old": "flag is True",
+  "bad": "flag is not None",
+  "cause": "Testing for non-None counts False as enabled.",
+  "ex": "Count only the boolean True values.",
+  "checks": [
+   [
+    [
+     [
+      true,
+      false,
+      null
+     ]
+    ],
+    1
+   ],
+   [
+    [
+     []
+    ],
+    0
+   ]
+  ],
+  "anchors": [
+   [
+    "false"
+   ],
+   [
+    "none",
+    "true"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "offset-map",
+  "split": "train",
+  "function": "offset",
+  "reference": "def offset(values, delta):\n    return [v + delta for v in values]",
+  "old": "v + delta",
+  "bad": "v + shift",
+  "cause": "The expression references shift although the parameter is named delta.",
+  "ex": "Use the declared offset parameter.",
+  "checks": [
+   [
+    [
+     [
+      1,
+      3
+     ],
+     2
+    ],
+    [
+     3,
+     5
+    ]
+   ],
+   [
+    [
+     [],
+     7
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "shift"
+   ],
+   [
+    "name",
+    "defin",
+    "delta"
+   ]
+  ],
+  "source": "NeuralDebugger original"
+ },
+ {
+  "id": "prism",
+  "split": "train",
+  "function": "find_Volume",
+  "reference": "def find_Volume(l,b,h):\n    return ((l * b * h) / 2)",
+  "old": " / 2",
+  "bad": " // 2",
+  "cause": "Floor division discards the fractional part of an odd product.",
+  "ex": "Divide by two using true division to retain half-unit volumes.",
+  "checks": [
+   [
+    [
+     1,
+     1,
+     1
+    ],
+    0.5
+   ],
+   [
+    [
+     2,
+     3,
+     4
+    ],
+    12
+   ]
+  ],
+  "anchors": [
+   [
+    "floor",
+    "trunc"
+   ],
+   [
+    "fraction",
+    "half"
+   ]
+  ],
+  "source": "MBPP sanitized #14"
+ },
+ {
+  "id": "rank-rows",
+  "split": "train",
+  "function": "sort_matrix",
+  "reference": "def sort_matrix(M):\n    result = sorted(M, key=sum)\n    return result",
+  "old": "key=sum",
+  "bad": "key=sum(M)",
+  "cause": "The sort key must be a callable but sum(M) tries to add lists immediately.",
+  "ex": "Pass sum so sorted computes one numeric key per row.",
+  "checks": [
+   [
+    [
+     [
+      [
+       5
+      ],
+      [
+       1,
+       1
+      ]
+     ]
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     [
+      5
+     ]
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "sum",
+    "key"
+   ],
+   [
+    "call",
+    "list"
+   ]
+  ],
+  "source": "MBPP sanitized #12"
+ },
+ {
+  "id": "squares",
+  "split": "train",
+  "function": "square_nums",
+  "reference": "def square_nums(nums):\n    square_nums = list(map(lambda x: x ** 2, nums))\n    return square_nums",
+  "old": "** 2",
+  "bad": "^ 2",
+  "cause": "Caret performs bitwise XOR instead of exponentiation.",
+  "ex": "Use the power operator to square each element.",
+  "checks": [
+   [
+    [
+     [
+      2,
+      3
+     ]
+    ],
+    [
+     4,
+     9
+    ]
+   ],
+   [
+    [
+     []
+    ],
+    []
+   ]
+  ],
+  "anchors": [
+   [
+    "xor",
+    "bitwise"
+   ],
+   [
+    "power",
+    "exponent"
+   ]
+  ],
+  "source": "MBPP sanitized #8"
+ }
+]

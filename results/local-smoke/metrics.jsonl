@@ -1,0 +1,2 @@
+{"step": 1, "epoch": 1, "train_loss": 1.2467873096466064, "elapsed_seconds": 2.2039999999979045, "peak_cuda_bytes": null}
+{"step": 1, "epoch": 1, "validation_loss": 1.624227523803711, "elapsed_seconds": 2.812999999994645, "peak_cuda_bytes": null}

@@ -1,0 +1,23 @@
+{
+  "stage": "local integration smoke only",
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "cpu": "AMD Ryzen 7 9800X3D",
+  "training_device": "cpu",
+  "training_peak_cuda_bytes": null,
+  "training_loss": 1.2467873096466064,
+  "one_example_validation_loss": 1.624227523803711,
+  "elapsed_optimizer_seconds": 2.2039999999979045,
+  "elapsed_through_validation_seconds": 2.812999999994645,
+  "adapter_bytes": 4372840,
+  "reloaded_validation_loss": 1.6265673637390137,
+  "base_loss_with_adapter_disabled": 1.628349781036377,
+  "verified_safe_tensor_index": true,
+  "missing_adapter_fallback": "base",
+  "cuda_probe": {
+    "hardware": "NVIDIA GeForce RTX 4070 SUPER",
+    "scope": "single first-layer query projection with LoRA backward",
+    "peak_pytorch_allocated_bytes": 22299136
+  },
+  "runpod_resources_created": 0,
+  "runpod_billing_statement": null
+}
