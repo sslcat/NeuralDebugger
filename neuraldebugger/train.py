@@ -49,18 +49,28 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def train(out, smoke=False):
+def train(out, smoke=False, expanded=False):
     if C["batch_size"] != 1 or C["optimizer"] != "AdamW":
         raise ValueError("Unsupported optimizer or microbatch")
     set_seed(C["seed"])
     rng = random.Random(C["seed"])
     engine = Engine()
+    from .corpus import V2, read_rows
+
+    directory = V2 if expanded else ROOT / "data"
+    manifest = json.loads((directory / "manifest.json").read_text())
+    if expanded:
+        manifest = manifest["splits"]
+        if engine.device != "cuda" or "4070 SUPER" not in torch.cuda.get_device_name():
+            raise RuntimeError("The v2 experiment requires the local RTX 4070 SUPER")
     splits = {}
     for split in ("train", "validation"):
-        manifest = json.loads((ROOT / "data/manifest.json").read_text())
-        if sha(ROOT / f"data/{split}.jsonl") != manifest[split]["sha256"]:
+        if sha(directory / f"{split}.jsonl") != manifest[split]["sha256"]:
             raise ValueError(f"Changed split: {split}")
-        splits[split] = [encode(engine.tok, r) for r in load(split)]
+        splits[split] = [
+            encode(engine.tok, r)
+            for r in (read_rows(split) if expanded else load(split))
+        ]
     model = get_peft_model(
         engine.model,
         LoraConfig(
@@ -167,5 +177,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--smoke", action="store_true")
+    p.add_argument("--expanded", action="store_true")
     args = p.parse_args()
-    train(args.out, args.smoke)
+    train(args.out, args.smoke, args.expanded)

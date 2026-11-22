@@ -1,0 +1,58 @@
+{
+  "splits": {
+    "test": {
+      "rows": 12,
+      "sha256": "0933538b9be3df1368de629dd5b1a960c867f33388563ac35ece5f4a97ae3627"
+    },
+    "train": {
+      "rows": 118,
+      "sha256": "1766e06b106f0396cba9f72b15607cbcd2b41210d69313dfa4568c1db316f7b8"
+    },
+    "validation": {
+      "rows": 22,
+      "sha256": "0947a85041bc663dfe31a79badcca137a43bff08dad4a50122c5f6a6b72b7f2d"
+    },
+    "independent": {
+      "rows": 24,
+      "sha256": "4eda96718f10a67c23339d44b351d98c791857dd61de44c2714544e09bfda64f"
+    }
+  },
+  "exclusions": [
+    [
+      "key-lookup",
+      "document-title"
+    ],
+    [
+      "mbpp-591",
+      "held-out swap family"
+    ],
+    [
+      "mbpp-747",
+      "token budget"
+    ]
+  ],
+  "selection": {
+    "public_near_duplicate_exclusions": 4,
+    "public_transformations": {
+      "equality": 9,
+      "intersection": 4,
+      "multiplication": 10,
+      "disjunction": 3,
+      "all": 2,
+      "original range stop": 10,
+      "addition": 13,
+      "subtraction": 11,
+      "inclusive comparison": 3,
+      "inequality": 7,
+      "max": 8,
+      "remainder": 8,
+      "strict comparison": 5,
+      "conjunction": 5,
+      "floor division": 3,
+      "membership": 6,
+      "min": 1,
+      "exponentiation": 1,
+      "any": 1
+    }
+  }
+}
