@@ -93,7 +93,7 @@ python -m tools.verify_replay .runs/hybrid-replay
 
 The replay runs all four measured configurations on a local RTX 4070 SUPER and requires a fresh output directory. The tests, sandbox checks and stored predictions can also be used on CPU. [Local training recipe](docs/training.md) · [Release audit](docs/release-audit.md)
 
-I used AI coding assistance from OpenAI Codex to implement the application, write and check fixtures, run experiments, draft documentation and review model responses. The behavioral scores come from actual executions. Qualitative judgments are labeled as AI-assisted.
+The behavioral scores come from actual executions. Qualitative judgments are labeled as AI-assisted.
 
 ## Engineering notes
 
@@ -111,4 +111,6 @@ I release the original code and fixtures under MIT and the included LoRA adapter
 
 ## Let's Connect
 
-I'm happy to discuss the implementation, training methodology, experiments and results. [Find me on GitHub](https://github.com/sslcat)
+I’m interested in when a language model’s diagnosis leads to a repair that actually works. I’d be happy to share how I built the workbench and evaluation harness, why I chose LoRA, and how I used behavioral probes to separate classifying an error from fixing it. Ask me about the math of low-rank updates, the tools I used, or what I learned when fine-tuning improved classification and reduced complete repairs.
+
+I’d like to hear how you evaluate debugging tools, too. [Get in touch on GitHub](https://github.com/sslcat).
